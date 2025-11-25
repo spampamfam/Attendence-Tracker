@@ -13,8 +13,8 @@ router.use(authMiddleware);
 
 router
   .get("/all", getAllUsers)
-  .post("/register", CreateUser) // malhash lazma al post deh
-  .put("/edit")
+  // .post("/register", CreateUser) // malhash lazma al post deh
+  .put("/edit", editUser)
   .delete("/delete", deleteUser);
 
 export default router;

@@ -1,18 +1,9 @@
-import React from "react";
-import { BrowserRouter } from "react-router-dom";
+import AppRouter from "./router/AppRouter";
 
-// import Landing from "./components/landing/Landing.jsx";
-
-import Login from "./components/login/Login";
-
-function App() {
+export default function App() {
   return (
-    <React.StrictMode>
-      <BrowserRouter>
-        <Login />
-      </BrowserRouter>
-    </React.StrictMode>
+    <>
+      <AppRouter />
+    </>
   );
 }
-
-export default App;

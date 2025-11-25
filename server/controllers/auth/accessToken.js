@@ -1,8 +1,10 @@
 import jwt from "jsonwebtoken";
 
 function accessToken(targetUser, res) {
+  const ID = targetUser._id.toString();
+  const EMAIL = targetUser.email;
   const accessToken = jwt.sign(
-    { _id: targetUser._id, email: targetUser.email },
+    { _id: ID, email: EMAIL },
     process.env.SECRET_KEY,
     {
       expiresIn: "1h",

@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+
+@import "tailwindcss";
+
+@theme {
+  /* gradients */
+
+  /* Navy */
+
+  /* button */
+  --color-normalbtn-default: #1c4a8c;
+  --color-normalbtn-hover: #123267;
+}
+
+.outfit {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* navbar hover */
+
+.hover-fade {
+  transition-property: opacity;
+  transition-timing-function: ease-out;
+  transition-duration: 450ms;
+}
+
+.hover-fade:hover {
+  transition-duration: 1350ms; /* fade-in duration */
+}
+
+.hover-fade:not(:hover) {
+  transition-duration: 150ms; /* fade-out duration */
+}

@@ -1,0 +1,73 @@
+import { useState } from "react";
+
+import Button from "../buttons/button";
+
+import logo from "/icons/Logo.svg";
+import dashboard from "/icons/dashboard.svg";
+import courses from "/icons/courses.svg";
+import calender from "/icons/calender.svg";
+import settings from "/icons/settings.svg";
+import logout from "/icons/logout.svg";
+
+export default function NavBar() {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <>
+      <nav
+        className="sticky left-0 top-0 w-18 bg-linear-to-b from-[#0B1F44] to-[#123267] h-screen hover:w-50 transition-all duration-350 py-4 group flex flex-col gap-5 justify-between"
+        onMouseEnter={() => {
+          setTimeout(() => {
+            setIsHovered(true);
+          }, 200);
+        }}
+        onMouseLeave={() => {
+          setTimeout(() => {
+            setIsHovered(false);
+          }, 150);
+        }}
+      >
+        <header>
+          <section className="mb-6">
+            <img src={logo} className="mx-auto" />
+            <p className="bold outfit text-2xl text-center text-white opacity-0 group-hover:opacity-100 hover-fade">
+              Attendance Tracker
+            </p>
+          </section>
+          <section className="flex flex-col justify-between items-center gap-4">
+            {isHovered ? (
+              <Button>Dashboard</Button>
+            ) : (
+              <img src={dashboard} className="mx-auto " />
+            )}
+
+            {isHovered ? (
+              <Button>Courses</Button>
+            ) : (
+              <img src={courses} className="mx-auto " />
+            )}
+
+            {isHovered ? (
+              <Button>Calender</Button>
+            ) : (
+              <img src={calender} className="mx-auto " />
+            )}
+          </section>
+        </header>
+        <footer className="flex flex-col justify-between items-center gap-4">
+          {isHovered ? (
+            <Button>Settings</Button>
+          ) : (
+            <img src={settings} className="mx-auto " />
+          )}
+
+          {isHovered ? (
+            <Button>Logout</Button>
+          ) : (
+            <img src={logout} className="mx-auto " />
+          )}
+        </footer>
+      </nav>
+    </>
+  );
+}
