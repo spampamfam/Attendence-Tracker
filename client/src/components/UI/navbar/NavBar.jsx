@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import Button from "../buttons/button";
+import DangerButton from "../buttons/DangerButton";
 
 import logo from "/icons/Logo.svg";
 import dashboard from "/icons/dashboard.svg";
@@ -10,12 +12,13 @@ import settings from "/icons/settings.svg";
 import logout from "/icons/logout.svg";
 
 export default function NavBar() {
+  const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <>
       <nav
-        className="sticky left-0 top-0 w-18 bg-linear-to-b from-[#0B1F44] to-[#123267] h-screen hover:w-50 transition-all duration-350 py-4 group flex flex-col gap-5 justify-between"
+        className="sticky left-0 top-0 w-18 bg-linear-to-b from-[#0B1F44] to-[#123267] h-screen hover:w-50 transition-all duration-350 py-4 group flex flex-col gap-5 justify-between z-50"
         onMouseEnter={() => {
           setTimeout(() => {
             setIsHovered(true);
@@ -36,7 +39,7 @@ export default function NavBar() {
           </section>
           <section className="flex flex-col justify-between items-center gap-4">
             {isHovered ? (
-              <Button>Dashboard</Button>
+              <Button onClick={() => navigate("/dashboard")}>Dashboard</Button>
             ) : (
               <img src={dashboard} className="mx-auto " />
             )}
@@ -62,7 +65,7 @@ export default function NavBar() {
           )}
 
           {isHovered ? (
-            <Button>Logout</Button>
+            <DangerButton>Logout</DangerButton>
           ) : (
             <img src={logout} className="mx-auto " />
           )}
