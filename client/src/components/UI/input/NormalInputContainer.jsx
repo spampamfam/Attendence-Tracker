@@ -1,7 +1,19 @@
-export default function NormalInputContainer({ children }) {
+export default function NormalInputContainer({
+  children,
+  type,
+  placeholder,
+  action,
+  value,
+}) {
   return (
-    <div className="bg-input-container w-[200px] text-center rounded-xl border-black border-1 p-2">
+    <input
+      value={value}
+      type={type}
+      placeholder={placeholder}
+      onChange={action}
+      className="bg-input-container w-full rounded-xl border-black border-1 p-2"
+    >
       {children}
-    </div>
+    </input>
   );
 }

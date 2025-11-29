@@ -1,8 +1,8 @@
 import Button from "../buttons/button";
 import DangerButton from "../buttons/DangerButton";
 import ModalContainer from "../container/ModalContainer";
-import HalfInputContainer from "../input/HalfInputContainer";
-import NormalInputContainer from "../input/NormalInputContainer";
+import HalfDivContainer from "../div/HalfDivContainer";
+import NormalDivContainer from "../div/NormalDivContainer";
 import ModalOverlay from "../overlay/ModalOverlay";
 
 export default function CourseModal() {
@@ -19,70 +19,70 @@ export default function CourseModal() {
             <section className="grid grid-cols-3 gap-2">
               <div className="text-center">
                 <h3>Attendence</h3>
-                <HalfInputContainer>53%</HalfInputContainer>
+                <HalfDivContainer>53%</HalfDivContainer>
               </div>
               <div className="text-center">
                 <h3>Attendence</h3>
-                <HalfInputContainer>53%</HalfInputContainer>
+                <HalfDivContainer>53%</HalfDivContainer>
               </div>
               <div className="text-center">
                 <h3>Attendence</h3>
-                <HalfInputContainer>53%</HalfInputContainer>
+                <HalfDivContainer>53%</HalfDivContainer>
               </div>
               <div className="text-center">
                 <h3>Attendence</h3>
-                <HalfInputContainer>53%</HalfInputContainer>
+                <HalfDivContainer>53%</HalfDivContainer>
               </div>
             </section>
             <h2>Classes</h2>
             <section className="grid grid-cols-3 gap-2">
               <div className="text-center">
                 <h3>Attendence</h3>
-                <HalfInputContainer>53%</HalfInputContainer>
+                <HalfDivContainer>53%</HalfDivContainer>
               </div>
               <div className="text-center">
                 <h3>Attendence</h3>
-                <HalfInputContainer>53%</HalfInputContainer>
+                <HalfDivContainer>53%</HalfDivContainer>
               </div>
               <div className="text-center">
                 <h3>Attendence</h3>
-                <HalfInputContainer>53%</HalfInputContainer>
+                <HalfDivContainer>53%</HalfDivContainer>
               </div>
               <div className="text-center">
                 <h3>Attendence</h3>
-                <HalfInputContainer>53%</HalfInputContainer>
+                <HalfDivContainer>53%</HalfDivContainer>
               </div>
             </section>
             <h2>Schedule</h2>
             <section className="flex flex-col justify-between gap-2">
               <div className="flex gap-2 ">
                 <h2 className="mt-1">Days:</h2>
-                <NormalInputContainer>Sunday - Tuesday</NormalInputContainer>
+                <NormalDivContainer>Sunday - Tuesday</NormalDivContainer>
               </div>
               <div className="flex gap-2 ">
                 <h2 className="mt-1">Time:</h2>
-                <NormalInputContainer>10:00 AM : 11:30 AM</NormalInputContainer>
+                <NormalDivContainer>10:00 AM : 11:30 AM</NormalDivContainer>
               </div>
               <div className="flex gap-2 ">
                 <h2 className="mt-1">Location:</h2>
-                <NormalInputContainer>B305</NormalInputContainer>
+                <NormalDivContainer>B305</NormalDivContainer>
               </div>
             </section>
             <h2>Upcoming</h2>
             <section className="flex flex-col justify-between gap-2">
               <div className="flex gap-2 ">
                 <h2 className="mt-1">Midterm Exam:</h2>
-                <HalfInputContainer>Nov 15</HalfInputContainer>
+                <HalfDivContainer>Nov 15</HalfDivContainer>
               </div>
               <div className="flex gap-2 ">
                 <h2 className="mt-1">Project Proposal:</h2>
-                <HalfInputContainer>Dec 15</HalfInputContainer>
+                <HalfDivContainer>Dec 15</HalfDivContainer>
               </div>
               <div className="flex gap-2 ">
                 <h2 className="mt-1">Final Project</h2>
-                <HalfInputContainer>
+                <HalfDivContainer>
                   <span className="text-danger-text bold">Nov,10</span>
-                </HalfInputContainer>
+                </HalfDivContainer>
               </div>
             </section>
           </section>

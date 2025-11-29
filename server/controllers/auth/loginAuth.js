@@ -26,7 +26,14 @@ async function loginAuth(req, res) {
     console.log(`${new Date()}, ${email} : Logged in `);
     return res
       .status(200)
-      .json({ Message: "Login Succussfully", userInfo: userObj });
+      .json({
+        Message: "Login Succussfully",
+        userInfo: {
+          email: userObj.email,
+          name: userObj.name,
+          created_at: userObj.created_at,
+        },
+      });
   } catch (error) {
     res.status(500).json({ message: "Error Logging in", error });
   }

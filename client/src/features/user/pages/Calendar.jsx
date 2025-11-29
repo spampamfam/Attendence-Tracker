@@ -30,7 +30,7 @@ function CalendarApp() {
       {
         id: "1",
         title: "Event 1",
-        description: "zeby",
+        description: "bezaz",
         start: Temporal.ZonedDateTime.from("2025-11-26T20:00[Africa/Cairo]"),
         end: Temporal.ZonedDateTime.from("2025-11-26T21:00[Africa/Cairo]"),
       },

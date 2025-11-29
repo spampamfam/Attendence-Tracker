@@ -11,6 +11,8 @@ import calender from "/icons/calender.svg";
 import settings from "/icons/settings.svg";
 import logout from "/icons/logout.svg";
 
+import { logoutHandler } from "../../../features/auth/userAPI";
+
 export default function NavBar() {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
@@ -33,25 +35,27 @@ export default function NavBar() {
         <header>
           <section className="mb-6">
             <img src={logo} className="mx-auto" />
-            <p className="bold outfit text-2xl text-center text-white opacity-0 group-hover:opacity-100 hover-fade">
+            <p className="bold outfit text-2xl text-center text-white opacity-0 group-hover:opacity-100 hover-fade ">
               Attendance Tracker
             </p>
           </section>
           <section className="flex flex-col justify-between items-center gap-4">
             {isHovered ? (
-              <Button onClick={() => navigate("/dashboard")}>Dashboard</Button>
+              <Button action={() => navigate("/app/dashboard")}>
+                Dashboard
+              </Button>
             ) : (
               <img src={dashboard} className="mx-auto " />
             )}
 
             {isHovered ? (
-              <Button>Courses</Button>
+              <Button action={() => navigate("/app/courses")}>Courses</Button>
             ) : (
               <img src={courses} className="mx-auto " />
             )}
 
             {isHovered ? (
-              <Button>Calender</Button>
+              <Button action={() => navigate("/app/calendar")}>Calender</Button>
             ) : (
               <img src={calender} className="mx-auto " />
             )}
@@ -59,13 +63,13 @@ export default function NavBar() {
         </header>
         <footer className="flex flex-col justify-between items-center gap-4">
           {isHovered ? (
-            <Button>Settings</Button>
+            <Button action={() => navigate("/app/settings")}>Settings</Button>
           ) : (
             <img src={settings} className="mx-auto " />
           )}
 
           {isHovered ? (
-            <DangerButton>Logout</DangerButton>
+            <DangerButton action={logoutHandler}>Logout</DangerButton>
           ) : (
             <img src={logout} className="mx-auto " />
           )}

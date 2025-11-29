@@ -10,11 +10,6 @@ export default function Courses() {
       </header>
       <section className="grid grid-cols-4 gap-8 p-4">
         <SquareContainer>hey</SquareContainer>
-        <SquareContainer>hey</SquareContainer>
-        <SquareContainer>hey</SquareContainer>
-        <SquareContainer>hey</SquareContainer>
-        <SquareContainer>hey</SquareContainer>
-        <SquareContainer>hey</SquareContainer>
       </section>
     </HeroContainer>
   );

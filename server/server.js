@@ -16,10 +16,16 @@ const PORT = process.env.PORT || 3000;
 //basic express config
 
 const app = express();
+app.use(
+  cors({
+    origin: "http://localhost:5173", // your frontend
+    credentials: true, // allow cookies/auth headers
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
 app.use(cookieParser());
 app.set("view engine", "ejs");
 app.set("views", "./views");
-app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
