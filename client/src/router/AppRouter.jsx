@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import PrivateRoute from "./PrivateRoute";
+import PublicRoute from "./PublicRoute";
 
 import Layout from "../components/layout/Layout";
 
@@ -15,16 +16,22 @@ import Calendar from "../features/user/pages/Calendar";
 import Settings from "../features/user/pages/Settings";
 
 import CourseModal from "../components/UI/modal/CourseModal";
+import AddCourseModal from "../components/UI/modal/AddCourseModal";
 
 const router = createBrowserRouter([
   //unprotected routes
   {
-    path: "/",
-    element: <Layout />,
+    element: <PublicRoute />,
     children: [
-      //   { index: true, element: <Landing /> },
-      { path: "login", element: <Login /> },
-      { path: "signup", element: <Signup /> },
+      {
+        path: "/",
+        element: <Layout />,
+        children: [
+          //{ index: true, element: <Landing /> },
+          { path: "login", element: <Login /> },
+          { path: "signup", element: <Signup /> },
+        ],
+      },
     ],
   },
 
@@ -41,7 +48,19 @@ const router = createBrowserRouter([
           { path: "courses", element: <Courses /> },
           { path: "calendar", element: <Calendar /> },
           { path: "settings", element: <Settings /> },
-          { path: "modal", element: <CourseModal /> },
+        ],
+      },
+    ],
+  },
+  {
+    path: "/dev",
+    element: <AppLayout />,
+    children: [
+      {
+        path: "modal",
+        children: [
+          { path: "view", element: <CourseModal /> },
+          { path: "add", element: <AddCourseModal /> },
         ],
       },
     ],

@@ -6,8 +6,8 @@ function authMiddleware(req, res, next) {
 
   try {
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
-    const { email, _id } = decoded;
-    req.user = { email, _id };
+    const { _id } = decoded;
+    res.locals.userId = _id;
     next();
   } catch (err) {
     res.send({ error: err.message });

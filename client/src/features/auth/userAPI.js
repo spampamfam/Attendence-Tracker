@@ -1,7 +1,9 @@
 import { redirect } from "react-router-dom";
 import API from "../../api/axiosClient";
 
-import { authService } from "../../services/dispatch/auth";
+import { authService } from "../../services/dispatch/authService";
+
+import toast from "react-hot-toast";
 
 const LOGIN_END = import.meta.env.VITE_LOGIN_END;
 const SIGNUP_END = import.meta.env.VITE_SIGNUP_END;
@@ -16,6 +18,7 @@ export const loginHandler = async (email, password) => {
     };
     const res = await API.post(LOGIN_END, payload);
     authService.loginUser(res.data.userInfo);
+    // toast.success("Login successfully");
   } catch (err) {
     console.error(err.response?.data || err.message);
   }

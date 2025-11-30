@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import toast, { Toaster } from "react-hot-toast";
+
 import store from "./app/store";
 import App from "./App";
 
@@ -13,6 +15,7 @@ root.render(
     <Provider store={store}>
       <AuthProvider>
         <App />
+        <Toaster />
       </AuthProvider>
     </Provider>
   </React.StrictMode>

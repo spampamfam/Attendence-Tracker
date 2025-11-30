@@ -1,12 +1,10 @@
 import mongoose from "mongoose";
 
 const taskSchema = new mongoose.Schema({
-  title: { type: String, default: null },
-  prof: { type: String, default: null },
-  day: { type: Date, default: null },
-  period: { type: Number, default: 1.5 },
-  startPeriod: { type: Number, default: null },
-  endPeriod: { type: Number, default: null },
+  title: { type: String },
+  prof: { type: String },
+  start: { type: String },
+  end: { type: String },
   attend: { type: Number, default: null },
   abscent: { type: Number, default: null },
   profAbscent: { type: Number, default: null },
@@ -15,9 +13,9 @@ const taskSchema = new mongoose.Schema({
 
 const userSchema = new mongoose.Schema({
   name: { type: String },
-  email: { type: String, unique: true },
+  email: { type: String },
   password: { type: String },
-  tasks: { type: [taskSchema], default: [{}] },
+  tasks: [taskSchema],
   created_at: { type: Date, default: Date.now },
 });
 

@@ -1,6 +1,6 @@
 import API from "../api/axiosClient";
 import { useEffect } from "react";
-import { authService } from "../services/dispatch/auth";
+import { authService } from "../services/dispatch/authService";
 import { useDispatch } from "react-redux";
 
 function AuthProvider({ children }) {
@@ -13,7 +13,6 @@ function AuthProvider({ children }) {
       try {
         const res = await API.get(VALIDATE_END);
         authService.loginUser(res.data.userInfo);
-        console.log(res.data);
       } catch (error) {
         console.log(error.message);
         // authService.logoutUser();

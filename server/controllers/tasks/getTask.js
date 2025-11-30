@@ -1,10 +1,12 @@
 import User from "../../database/schema/userSchema.js";
+import jwt from "jsonwebtoken";
 
 async function getTask(req, res) {
   try {
-    const { email } = req.body;
-    const targetUser = await User.findOne({ email: email });
-    res.status(200).json({ email: targetUser.email }, targetUser.tasks);
+    const id = res.locals.userID;
+    const targetUser = await User.findOne({ id });
+    const tasks = targetUser.tasks;
+    res.status(200).json({ tasks });
   } catch (error) {
     res.send(error.message);
   }
