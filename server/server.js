@@ -18,7 +18,12 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 app.use(
   cors({
-    origin: "http://localhost:5173", // your frontend
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:4173",
+      "https://nonpejoratively-campanological-leanna.ngrok-free.dev",
+      process.env.URL_ORIGIN,
+    ], // your frontend
     credentials: true, // allow cookies/auth headers
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
