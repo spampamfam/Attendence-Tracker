@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@js-temporal/polyfill": "^0.5.1",
     "@reduxjs/toolkit": "^2.11.0",
     "@schedule-x/calendar": "^3.4.2",
     "@schedule-x/drag-and-drop": "^3.4.2",
@@ -29,6 +30,7 @@
     "react-router-dom": "^7.9.6",
     "redux": "^5.0.1",
     "tailwindcss": "^4.1.17",
+    "temporal": "^0.7.1",
     "temporal-polyfill": "^0.3.0"
   },
   "devDependencies": {
