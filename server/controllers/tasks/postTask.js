@@ -1,10 +1,14 @@
 import User from "../../database/schema/userSchema.js";
+import dirtyToUnix from "../../utils/dirtyToUnix.js";
 
 async function postTask(req, res) {
   const id = res.locals.userID;
-  const taskData = req.body;
+  let taskData = req.body;
 
   if (!taskData) throw new Error("No task data provided");
+
+  taskData.startDate = dirtyToUnix(taskData.startDate);
+  taskData.endDate = dirtyToUnix(taskData.endDate);
 
   const newTask = {
     title: taskData.title,

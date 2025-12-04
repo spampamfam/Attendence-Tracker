@@ -17,6 +17,8 @@ import Settings from "../features/user/pages/Settings";
 
 import CourseModal from "../components/UI/modal/CourseModal";
 import AddCourseModal from "../components/UI/modal/AddCourseModal";
+import ConfirmModal from "../components/UI/modal/ConfirmModal";
+import EditCourseModal from "../components/UI/modal/EditCourseModal";
 
 const router = createBrowserRouter([
   //unprotected routes
@@ -52,6 +54,7 @@ const router = createBrowserRouter([
       },
     ],
   },
+  //dev routes for testing
   {
     path: "/dev",
     element: <AppLayout />,
@@ -61,6 +64,8 @@ const router = createBrowserRouter([
         children: [
           { path: "view", element: <CourseModal /> },
           { path: "add", element: <AddCourseModal /> },
+          { path: "confirm", element: <ConfirmModal /> },
+          { path: "edit", element: <EditCourseModal /> },
         ],
       },
     ],

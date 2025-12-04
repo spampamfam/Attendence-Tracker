@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -6,29 +7,37 @@ import "react-datepicker/dist/react-datepicker.css";
 import ModalContainer from "../container/ModalContainer";
 import ModalOverlay from "../overlay/ModalOverlay";
 
-import { addCourseModalService } from "../../../services/dispatch/addCourseModalService";
+import { editCourseModalService } from "../../../services/dispatch/editCourseModalService";
 import { taskDataService } from "../../../services/dispatch/taskDataService";
-import { newTask } from "../../../services/Handler/Tasks";
+import { editTask } from "../../../services/Handler/Tasks";
 import dateHandler from "../../../services/data/dateHandler";
 
-export default function CourseModal() {
-  const [title, setTitle] = useState("");
-  const [name, setName] = useState("");
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+export default function EditCourseModal({ target }) {
+  const [title, setTitle] = useState(target.title);
+  const [name, setName] = useState(target.prof);
+  const [startDate, setStartDate] = useState(
+    target?.start ? new Date(target.start) : null
+  );
+  const [endDate, setEndDate] = useState(
+    target?.end ? new Date(target.end) : null
+  );
+
+  const data = useSelector((state) => state.tasks.data);
 
   const handleSubmission = async (e) => {
     e.preventDefault();
-    const payload = { title, name, startDate, endDate };
-    addCourseModalService.setClose();
-    await newTask(payload);
+    const id = target._id;
+    const payload = { title, prof: name, start: startDate, end: endDate, id };
+    await editTask(payload, data);
+
+    editCourseModalService.setClose();
   };
 
   return (
     <>
       <ModalOverlay
         action={() => {
-          addCourseModalService.setClose();
+          editCourseModalService.setClose();
         }}
       >
         <ModalContainer>
@@ -39,6 +48,7 @@ export default function CourseModal() {
             <h2 className="mt-1">Title</h2>
             <input
               type="text"
+              value={title}
               placeholder="Enter the Course name"
               onChange={(e) => setTitle(e.target.value)}
               className="normalInput"
@@ -47,6 +57,7 @@ export default function CourseModal() {
             <h2 className="mt-1">Prof. Name</h2>
             <input
               type="text"
+              value={name}
               placeholder="Enter the professor's name"
               onChange={(e) => setName(e.target.value)}
               className="normalInput"
@@ -58,7 +69,6 @@ export default function CourseModal() {
               onChange={(date) => setStartDate(date)}
               showTimeSelect
               dateFormat="Pp" //change this if you wanna change the format
-              endDate={endDate}
               className="border rounded-md p-2 bg-input-container w-[320px]"
             />
 

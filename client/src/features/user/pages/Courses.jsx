@@ -49,27 +49,25 @@ export default function Courses() {
         <section className="grid grid-cols-4 gap-8 p-4">
           {data ? (
             data.tasks.map((task) => (
-              <>
-                <div
-                  className="coursesChildContainer grid grid-rows-[30px_35px_45px_40px] grid-1"
-                  id={task._id}
+              <div
+                className="coursesChildContainer grid grid-rows-[30px_35px_45px_40px] grid-1"
+                id={task._id}
+                key={task._id}
+              >
+                <h2>{task.title || "N/A"}</h2>
+                <p className="">
+                  Attendence: <span>{task.attend || "N/A"}</span>
+                </p>
+                <p className=" text-secondry-text">{task.prof}</p>
+                <button
+                  className="normalButton"
+                  onClick={() => {
+                    viewCourseModalService.setOpen(task._id);
+                  }}
                 >
-                  <h2>{task.title || "N/A"}</h2>
-                  <p className="">
-                    Attendence: <span>{task.attend || "N/A"}</span>
-                  </p>
-                  <p className=" text-secondry-text">{task.prof}</p>
-                  <button
-                    className="normalButton"
-                    onClick={() => {
-                      console.log(task._id);
-                      viewCourseModalService.setOpen(task._id);
-                    }}
-                  >
-                    View
-                  </button>
-                </div>
-              </>
+                  View
+                </button>
+              </div>
             ))
           ) : (
             <>

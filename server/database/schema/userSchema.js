@@ -3,8 +3,8 @@ import mongoose from "mongoose";
 const taskSchema = new mongoose.Schema({
   title: { type: String },
   prof: { type: String },
-  start: { type: String },
-  end: { type: String },
+  start: { type: Date },
+  end: { type: Date },
   attend: { type: Number, default: null },
   abscent: { type: Number, default: null },
   profAbscent: { type: Number, default: null },

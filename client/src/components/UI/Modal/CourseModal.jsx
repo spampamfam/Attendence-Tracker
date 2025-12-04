@@ -1,25 +1,49 @@
-import Button from "../buttons/button";
-import DangerButton from "../buttons/DangerButton";
-import ModalContainer from "../container/ModalContainer";
-import HalfDivContainer from "../div/HalfDivContainer";
-import NormalDivContainer from "../div/NormalDivContainer";
-import ModalOverlay from "../overlay/ModalOverlay";
-
-import { viewCourseModalService } from "../../../services/dispatch/viewCourseModalService";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
+import ModalContainer from "../container/ModalContainer";
+import HalfDivContainer from "../div/HalfDivContainer";
+import NormalDivContainer from "../div/NormalDivContainer";
+
+import ModalOverlay from "../overlay/ModalOverlay";
+import ConfirmModal from "./ConfirmModal";
+
+import { editCourseModalService } from "../../../services/dispatch/editCourseModalService";
+import { viewCourseModalService } from "../../../services/dispatch/viewCourseModalService";
+import { confirmModalService } from "../../../services/dispatch/confirmModalService";
+import { taskDataService } from "../../../services/dispatch/taskDataService";
+
+import { deleteTask } from "../../../services/Handler/Tasks";
+import EditCourseModal from "./EditCourseModal";
+
 export default function CourseModal() {
-  const [target, setTarget] = useState({});
+  const isConfirmModalOpen = useSelector((state) => state.confirmModal.open);
+  const isEditCourseModalOpen = useSelector(
+    (state) => state.editCourseModal.open
+  );
   const id = useSelector((state) => state.viewCourseModal.id);
   const data = useSelector((state) => state.tasks.data);
-  const array = data.tasks;
 
+  const [target, setTarget] = useState({});
+
+  const array = data.tasks;
   useEffect(() => {
     let found = array.find((task) => task._id === id);
     setTarget(found);
-    console.log(found);
   }, [id]);
+
+  const handleConfirm = () => {
+    confirmModalService.setClose();
+    viewCourseModalService.setClose();
+    taskDataService.fetchData({
+      tasks: data.tasks.filter((task) => task._id !== target._id),
+    });
+    deleteTask(target._id);
+  };
+
+  const handleCancel = () => {
+    confirmModalService.setClose();
+  };
 
   return (
     <>
@@ -111,11 +135,29 @@ export default function CourseModal() {
             </section>
           </section>
           <footer className="mt-4 flex gap-2">
-            <Button>Edit</Button>
-            <DangerButton>Delete</DangerButton>
+            <button
+              className="normalButton"
+              onClick={() => {
+                editCourseModalService.setOpen();
+              }}
+            >
+              Edit
+            </button>
+            <button
+              className="dangerButton"
+              onClick={() => {
+                confirmModalService.setOpen();
+              }}
+            >
+              Delete
+            </button>
           </footer>
         </ModalContainer>
       </ModalOverlay>
+      {isConfirmModalOpen && (
+        <ConfirmModal confirm={handleConfirm} cancel={handleCancel} />
+      )}
+      {isEditCourseModalOpen && <EditCourseModal target={target} />}
     </>
   );
 }
