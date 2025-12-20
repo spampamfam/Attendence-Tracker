@@ -5,6 +5,7 @@ import addCourseModalReducer from "../services/slice/addCourseModalSlice";
 import viewCourseModalReducer from "../services/slice/viewCourseModalSlice";
 import confirmModalReducer from "../services/slice/confirmModalSlice";
 import editCourseModalReducer from "../services/slice/editCourseModalSlice";
+import editUserModalReducer from "../services/slice/editUserModalSlice";
 
 const rootReducer = combineReducers({
   //data flow
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   viewCourseModal: viewCourseModalReducer,
   confirmModal: confirmModalReducer,
   editCourseModal: editCourseModalReducer,
+  editUserModal: editUserModalReducer,
 });
 
 export default rootReducer;

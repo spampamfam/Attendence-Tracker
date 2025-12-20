@@ -94,3 +94,33 @@ export const logoutHandler = async () => {
     console.error("Unexpected logout error:", err.message || err);
   }
 };
+
+export const editUser = async (payload) => {
+  if (!payload) console.error("nothing needs to be edited");
+  const { name, email, studentId, age, college, major } = payload;
+  try {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) throw new Error("No logged-in user found");
+
+    const { data, error } = await supabase
+      .from("users")
+      .update({
+        name: name,
+        email: email,
+        student_id: studentId,
+        age: age,
+        college: college,
+        major: major,
+      })
+      .select("*")
+      .single()
+      .eq("id", user.id);
+    if (error) throw error;
+
+    authService.loginUser(data);
+  } catch (error) {
+    console.error(error.message || error || "Unexpected edit error");
+  }
+};
