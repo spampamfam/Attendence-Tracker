@@ -1,4 +1,4 @@
-import API from "../api/axiosClient";
+import supabase from "../api/supabaseClient";
 import { useEffect } from "react";
 import { authService } from "../services/dispatch/authService";
 import { useDispatch } from "react-redux";
@@ -6,21 +6,37 @@ import { useDispatch } from "react-redux";
 function AuthProvider({ children }) {
   const dispatch = useDispatch();
 
-  const VALIDATE_END = import.meta.env.VITE_VALIDATE_END;
+  // Helper to extract only serializable user data
+  const getSerializableUser = (supabaseUser) => {
+    if (!supabaseUser) return null;
+    return {
+      id: supabaseUser.id,
+      email: supabaseUser.email,
+    };
+  };
 
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const res = await API.get(VALIDATE_END);
-        authService.loginUser(res.data.userInfo);
-      } catch (error) {
-        console.log(error.message);
-        // authService.logoutUser();
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session) {
+        const serializableUser = getSerializableUser(session.user);
+        authService.loginUser(dispatch, serializableUser);
       }
-    };
+    });
 
-    fetchUser();
+    const { data: listener } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        if (session) {
+          const serializableUser = getSerializableUser(session.user);
+          authService.loginUser(dispatch, serializableUser);
+        } else {
+          authService.logoutUser(dispatch);
+        }
+      }
+    );
+
+    return () => listener.subscription.unsubscribe();
   }, [dispatch]);
+
   return children;
 }
 

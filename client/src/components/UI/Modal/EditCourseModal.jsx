@@ -13,22 +13,32 @@ import { editTask } from "../../../services/Handler/Tasks";
 import dateHandler from "../../../services/data/dateHandler";
 
 export default function EditCourseModal({ target }) {
-  const [title, setTitle] = useState(target.title);
-  const [name, setName] = useState(target.prof);
+  const [title, setTitle] = useState(target.course_name);
+  const [name, setName] = useState(target.professor_name);
+  const [courseCode, setCourseCode] = useState(target.course_code);
   const [startDate, setStartDate] = useState(
-    target?.start ? new Date(target.start) : null
+    new Date(target.course_sessions[0].start_datetime)
   );
   const [endDate, setEndDate] = useState(
-    target?.end ? new Date(target.end) : null
+    new Date(target.course_sessions[0].end_datetime)
   );
 
   const data = useSelector((state) => state.tasks.data);
 
   const handleSubmission = async (e) => {
     e.preventDefault();
-    const id = target._id;
-    const payload = { title, prof: name, start: startDate, end: endDate, id };
-    await editTask(payload, data);
+
+    const id = target.id;
+    const payload = {
+      title,
+      prof: name,
+      start: startDate,
+      end: endDate,
+      id,
+      course_code: courseCode,
+    };
+
+    editTask(payload, data);
 
     editCourseModalService.setClose();
   };
@@ -41,6 +51,7 @@ export default function EditCourseModal({ target }) {
         }}
       >
         <ModalContainer>
+          {console.log(target)}
           <header className="text-center">
             <h1>Add New Course</h1>
           </header>
@@ -51,6 +62,15 @@ export default function EditCourseModal({ target }) {
               value={title}
               placeholder="Enter the Course name"
               onChange={(e) => setTitle(e.target.value)}
+              className="normalInput"
+            />
+
+            <h2 className="mt-1">Course Code</h2>
+            <input
+              type="text"
+              value={courseCode}
+              placeholder="Enter the Course's code"
+              onChange={(e) => setCourseCode(e.target.value)}
               className="normalInput"
             />
 

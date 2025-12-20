@@ -1,5 +1,5 @@
 import store from "../../app/store";
-import { fetchData, clearDate } from "../slice/taskSlice";
+import { fetchData, clearDate, fetchStats } from "../slice/taskSlice";
 
 export const taskDataService = {
   fetchData: (payload) => {
@@ -7,5 +7,8 @@ export const taskDataService = {
   },
   clearDate: () => {
     store.dispatch(clearDate());
+  },
+  fetchStats: (payload) => {
+    store.dispatch(fetchStats(payload));
   },
 };

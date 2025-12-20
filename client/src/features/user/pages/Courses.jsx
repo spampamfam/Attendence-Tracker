@@ -47,22 +47,22 @@ export default function Courses() {
           </button>
         </header>
         <section className="grid grid-cols-4 gap-8 p-4">
-          {data ? (
-            data.tasks.map((task) => (
+          {data && data.length > 0 ? (
+            data.map((task) => (
               <div
                 className="coursesChildContainer grid grid-rows-[30px_35px_45px_40px] grid-1"
-                id={task._id}
-                key={task._id}
+                id={task.id}
+                key={task.id}
               >
-                <h2>{task.title || "N/A"}</h2>
-                <p className="">
-                  Attendence: <span>{task.attend || "N/A"}</span>
+                <h2>{task.course_name || "N/A"}</h2>
+                <p>
+                  Attendance: <span>{task.attend || "N/A"}</span>
                 </p>
-                <p className=" text-secondry-text">{task.prof}</p>
+                <p className="text-secondry-text">{task.professor_name}</p>
                 <button
                   className="normalButton"
                   onClick={() => {
-                    viewCourseModalService.setOpen(task._id);
+                    viewCourseModalService.setOpen(task.id);
                   }}
                 >
                   View
@@ -70,9 +70,7 @@ export default function Courses() {
               </div>
             ))
           ) : (
-            <>
-              <h1>No Tasks Yet</h1>
-            </>
+            <h1>No Tasks Yet</h1>
           )}
         </section>
       </HeroContainer>

@@ -10,6 +10,7 @@ import courses from "/icons/courses.svg";
 import calender from "/icons/calender.svg";
 import settings from "/icons/settings.svg";
 import logout from "/icons/logout.svg";
+import session from "/icons/session.svg";
 
 import { logoutHandler } from "../../../features/auth/userAPI";
 
@@ -49,24 +50,30 @@ export default function NavBar() {
             )}
 
             {isHovered ? (
+              <Button action={() => navigate("/app/sessions")}>Sessions</Button>
+            ) : (
+              <img src={session} className="mx-auto " />
+            )}
+
+            {isHovered ? (
               <Button action={() => navigate("/app/courses")}>Courses</Button>
             ) : (
               <img src={courses} className="mx-auto " />
             )}
 
-            {isHovered ? (
+            {/* {isHovered ? (
               <Button action={() => navigate("/app/calendar")}>Calender</Button>
             ) : (
               <img src={calender} className="mx-auto " />
-            )}
+            )} */}
           </section>
         </header>
         <footer className="flex flex-col justify-between items-center gap-4">
-          {isHovered ? (
+          {/* {isHovered ? (
             <Button action={() => navigate("/app/settings")}>Settings</Button>
           ) : (
             <img src={settings} className="mx-auto " />
-          )}
+          )} */}
 
           {isHovered ? (
             <DangerButton action={logoutHandler}>Logout</DangerButton>

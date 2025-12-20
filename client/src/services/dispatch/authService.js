@@ -1,11 +1,10 @@
-import store from "../../app/store";
 import { login, logout } from "../../features/auth/authSlice";
 
 export const authService = {
-  loginUser: (token) => {
-    store.dispatch(login(token));
+  loginUser: (dispatch, user) => {
+    dispatch(login(user));
   },
-  logoutUser: () => {
-    store.dispatch(logout());
+  logoutUser: (dispatch) => {
+    dispatch(logout());
   },
 };

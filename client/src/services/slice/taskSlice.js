@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
-  lastFetch: null,
   data: null,
+  stats: null,
 };
 
 const taskSlice = createSlice({
@@ -9,16 +9,18 @@ const taskSlice = createSlice({
   initialState,
   reducers: {
     fetchData: (state, action) => {
-      state.lastFetch = Date.now();
       state.data = action.payload;
     },
     clearDate: (state) => {
-      state.lastFetch = null;
       state.data = null;
+      state.stats = null;
+    },
+    fetchStats: (state, action) => {
+      state.stats = action.payload;
     },
   },
 });
 
-export const { fetchData, clearDate } = taskSlice.actions;
+export const { fetchData, clearDate, fetchStats } = taskSlice.actions;
 
 export default taskSlice.reducer;

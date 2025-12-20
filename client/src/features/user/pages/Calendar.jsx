@@ -44,9 +44,10 @@ function CalendarApp() {
 
   // Load events when Redux data changes
   useEffect(() => {
-    if (!data) return;
+    console.log(data);
+    if (!data || !data[0]?.courses?.length) return; // safe guard
 
-    const events = seedCalendarData(data).map((task) => ({
+    const events = (seedCalendarData(data) || []).map((task) => ({
       id: task.id,
       title: task.title,
       start: Temporal.ZonedDateTime.from(task.start),

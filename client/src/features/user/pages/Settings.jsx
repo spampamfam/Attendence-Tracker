@@ -1,8 +1,12 @@
+import { useState } from "react";
+
 import Button from "../../../components/UI/buttons/button";
 import HeroContainer from "../../../components/UI/container/HeroContainer";
 import SquareContainer from "../../../components/UI/container/SquareContainer";
 
 export default function Courses() {
+  const [fontSize, setFontSize] = useState("16");
+
   return (
     <HeroContainer>
       <h1 className="outfit text-4xl bold text-shadow-2xs">Settings</h1>

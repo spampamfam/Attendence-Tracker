@@ -14,14 +14,26 @@ import dateHandler from "../../../services/data/dateHandler";
 export default function CourseModal() {
   const [title, setTitle] = useState("");
   const [name, setName] = useState("");
+  const [courseCode, setCourseCode] = useState("");
+  const [repeatWeeks, setRepeatWeeks] = useState("");
+  const [location, setLocation] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
-  const handleSubmission = async (e) => {
+  const handleSubmission = (e) => {
     e.preventDefault();
-    const payload = { title, name, startDate, endDate };
+    const payload = {
+      title,
+      name,
+      startDate,
+      endDate,
+      repeatWeeks,
+      location,
+      courseCode,
+    };
+    console.log(location);
     addCourseModalService.setClose();
-    await newTask(payload);
+    newTask(payload);
   };
 
   return (
@@ -49,6 +61,30 @@ export default function CourseModal() {
               type="text"
               placeholder="Enter the professor's name"
               onChange={(e) => setName(e.target.value)}
+              className="normalInput"
+            />
+
+            <h2 className="mt-1">Course Code</h2>
+            <input
+              type="text"
+              placeholder="Enter the Course's code"
+              onChange={(e) => setCourseCode(e.target.value)}
+              className="normalInput"
+            />
+
+            <h2 className="mt-1">Location</h2>
+            <input
+              type="text"
+              placeholder="Enter the Course's Location"
+              onChange={(e) => setLocation(e.target.value)}
+              className="normalInput"
+            />
+
+            <h2 className="mt-1">Repeat Weeks</h2>
+            <input
+              type="number"
+              // placeholder="Enter the Course's code"
+              onChange={(e) => setRepeatWeeks(e.target.value)}
               className="normalInput"
             />
 

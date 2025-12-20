@@ -14,11 +14,13 @@ import Dashboard from "../features/user/pages/Dashboard";
 import Courses from "../features/user/pages/Courses";
 import Calendar from "../features/user/pages/Calendar";
 import Settings from "../features/user/pages/Settings";
+import Sessions from "../features/user/pages/Sessions";
 
 import CourseModal from "../components/UI/modal/CourseModal";
 import AddCourseModal from "../components/UI/modal/AddCourseModal";
 import ConfirmModal from "../components/UI/modal/ConfirmModal";
 import EditCourseModal from "../components/UI/modal/EditCourseModal";
+import ViewSessionModal from "../components/UI/modal/ViewSessionModal";
 
 const router = createBrowserRouter([
   //unprotected routes
@@ -45,11 +47,12 @@ const router = createBrowserRouter([
         path: "/app",
         element: <AppLayout />,
         children: [
-          { index: true, element: <Dashboard /> },
+          { index: true, element: <Courses /> },
           { path: "dashboard", element: <Dashboard /> },
           { path: "courses", element: <Courses /> },
           { path: "calendar", element: <Calendar /> },
           { path: "settings", element: <Settings /> },
+          { path: "sessions", element: <Sessions /> },
         ],
       },
     ],
@@ -66,7 +69,12 @@ const router = createBrowserRouter([
           { path: "add", element: <AddCourseModal /> },
           { path: "confirm", element: <ConfirmModal /> },
           { path: "edit", element: <EditCourseModal /> },
+          { path: "viewsession", element: <ViewSessionModal /> },
         ],
+      },
+      {
+        path: "pages",
+        children: [{ path: "sessions", element: <Sessions /> }],
       },
     ],
   },

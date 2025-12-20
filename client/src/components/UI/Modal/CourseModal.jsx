@@ -26,19 +26,18 @@ export default function CourseModal() {
 
   const [target, setTarget] = useState({});
 
-  const array = data.tasks;
+  const array = data;
   useEffect(() => {
-    let found = array.find((task) => task._id === id);
+    let found = array.find((task) => task.id === id);
     setTarget(found);
   }, [id]);
 
   const handleConfirm = () => {
     confirmModalService.setClose();
     viewCourseModalService.setClose();
-    taskDataService.fetchData({
-      tasks: data.tasks.filter((task) => task._id !== target._id),
-    });
-    deleteTask(target._id);
+
+    console.log(target);
+    deleteTask(target.id);
   };
 
   const handleCancel = () => {
@@ -55,30 +54,30 @@ export default function CourseModal() {
       >
         <ModalContainer>
           <header className="text-center">
-            <h1>{target.title || "N/A"}</h1>
-            <p className="outfit text-lg ">{target.prof || "N/A"}</p>
+            <h1>{target.course_name || "N/A"}</h1>
+            <p className="outfit text-lg ">{target.professor_name || "N/A"}</p>
           </header>
-          <section className="mt-2 text-center">
+          {/* <section className="mt-2 text-center">
             <h2>Classes</h2>
             <section className="grid grid-cols-3 gap-2">
               <div className="text-center">
                 <h3>Attendence</h3>
-                <HalfDivContainer>{"N/A"}</HalfDivContainer>
+                <HalfDivContainer>{0}</HalfDivContainer>
               </div>
               <div className="text-center">
                 <h3>Attended</h3>
-                <HalfDivContainer>{"N/A"}</HalfDivContainer>
+                <HalfDivContainer>{target.attend || 0}</HalfDivContainer>
               </div>
               <div className="text-center">
                 <h3>Total</h3>
-                <HalfDivContainer>{"N/A"}</HalfDivContainer>
+                <HalfDivContainer>{target.total || 0}</HalfDivContainer>
               </div>
               <div className="text-center">
                 <h3>Prof Abscent</h3>
-                <HalfDivContainer>{"N/A"}</HalfDivContainer>
+                <HalfDivContainer>{target.profAbscent || 0}</HalfDivContainer>
               </div>
-            </section>
-            <h2>Grade</h2>
+            </section> */}
+          {/* <h2>Grade</h2>
             <section className="grid grid-cols-3 gap-2">
               <div className="text-center">
                 <h3>Participation</h3>
@@ -99,8 +98,8 @@ export default function CourseModal() {
               <div className="text-center">
                 <h3>Total</h3>
                 <HalfDivContainer>{"N/A"}</HalfDivContainer>
-              </div>
-            </section>
+              </div> */}
+          {/* </section>
             <h2>Schedule</h2>
             <section className="flex flex-col justify-between gap-2">
               <div className="flex gap-2 ">
@@ -115,8 +114,8 @@ export default function CourseModal() {
                 <h2 className="mt-1">Location:</h2>
                 <NormalDivContainer>{"N/A"}</NormalDivContainer>
               </div>
-            </section>
-            <h2>Upcoming</h2>
+            </section> */}
+          {/* <h2>Upcoming</h2>
             <section className="flex flex-col justify-between gap-2">
               <div className="flex gap-2 ">
                 <h2 className="mt-1">Midterm Exam:</h2>
@@ -132,8 +131,8 @@ export default function CourseModal() {
                   <span className="text-danger-text bold">{"N/A"}</span>
                 </HalfDivContainer>
               </div>
-            </section>
-          </section>
+            </section> 
+          </section>*/}
           <footer className="mt-4 flex gap-2">
             <button
               className="normalButton"
