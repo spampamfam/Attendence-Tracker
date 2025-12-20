@@ -8,7 +8,7 @@ import { editUserModalService } from "../../../services/dispatch/editUserModalSe
 
 import EditUserModal from "../../../components/UI/modal/EditUserModal";
 
-export default function Courses() {
+export default function Settings() {
   const userData = useSelector((state) => state.auth.user);
   const isEditUserModalServiceOpen = useSelector(
     (state) => state.editUserModal.open

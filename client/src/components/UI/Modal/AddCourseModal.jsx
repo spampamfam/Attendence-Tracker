@@ -11,7 +11,7 @@ import { taskDataService } from "../../../services/dispatch/taskDataService";
 import { newTask } from "../../../services/Handler/Tasks";
 import dateHandler from "../../../services/data/dateHandler";
 
-export default function CourseModal() {
+export default function AddCourseModal() {
   const [title, setTitle] = useState("");
   const [name, setName] = useState("");
   const [courseCode, setCourseCode] = useState("");
