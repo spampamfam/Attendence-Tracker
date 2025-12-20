@@ -9,7 +9,7 @@ import supabase from "../../api/supabaseClient";
 
 export const newTask = async (payload) => {
   try {
-    if (!payload) throw new error("no payload provided");
+    if (!payload) throw new Error("no payload provided");
     const {
       data: { user },
     } = await supabase.auth.getUser();
