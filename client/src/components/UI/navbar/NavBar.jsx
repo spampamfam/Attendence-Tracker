@@ -69,11 +69,11 @@ export default function NavBar() {
           </section>
         </header>
         <footer className="flex flex-col justify-between items-center gap-4">
-          {/* {isHovered ? (
+          {isHovered ? (
             <Button action={() => navigate("/app/settings")}>Settings</Button>
           ) : (
             <img src={settings} className="mx-auto " />
-          )} */}
+          )}
 
           {isHovered ? (
             <DangerButton action={logoutHandler}>Logout</DangerButton>

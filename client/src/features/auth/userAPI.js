@@ -7,12 +7,9 @@ import toast from "react-hot-toast";
 import supabase from "../../api/supabaseClient";
 import { taskDataService } from "../../services/dispatch/taskDataService";
 
-const LOGIN_END = import.meta.env.VITE_LOGIN_END;
-const SIGNUP_END = import.meta.env.VITE_SIGNUP_END;
-const LOGOUT_END = import.meta.env.VITE_LOGOUT_END;
-
 export const loginHandler = async (email, password) => {
-  if (!email || !password) throw new Error("Email and password are required"); // remove the error handler to the main component
+  if (!email || !password) throw new Error("Email and password are required");
+  // remove the error handler to the main component
 
   try {
     //
@@ -22,17 +19,18 @@ export const loginHandler = async (email, password) => {
         password: password,
       });
 
-    const payload = {
-      id: loginData.user.id,
-      email: loginData.user.email,
-      role: loginData.user.email,
-      created_at: loginData.user.created_at,
-    };
+    const { data: userData, error: userDataError } = await supabase
+      .from("users")
+      .select(`*`)
+      .single()
+      .eq("id", loginData.user.id);
 
-    authService.loginUser(payload);
+    if (userDataError) throw error;
 
-    // console.log(loginData); // toast message
-    // console.log(loginData); // userdata
+    console.log(userData);
+    authService.loginUser(userData);
+
+    toast.success("Login Successfully");
   } catch (loginError) {
     console.error(loginError);
   }
@@ -72,9 +70,9 @@ export const signupHandler = async (name, email, password) => {
         name: name,
       });
 
-    authService.loginUser(payload);
+    // authService.loginUser(payload);
 
-    console.log("Signup successful:", payload.email);
+    toast.success("Signup successful:", payload.email);
   } catch (err) {
     console.error("Unexpected error:", err.message || err);
   }
@@ -91,7 +89,7 @@ export const logoutHandler = async () => {
 
     authService.logoutUser();
 
-    console.log("User logged out successfully");
+    toast.success("User logged out successfully");
   } catch (err) {
     console.error("Unexpected logout error:", err.message || err);
   }
