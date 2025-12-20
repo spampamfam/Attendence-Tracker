@@ -1,4 +1,4 @@
-import User from "../../database/schema/userSchema.js   ";
+import User from "../../database/schema/userSchema.js";
 
 const editTask = async (req, res) => {
   const id = res.locals.userId;

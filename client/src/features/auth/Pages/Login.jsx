@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import Button from "../../../components/UI/buttons/button";
+import Button from "../../../components/UI/buttons/Button";
 import NormalInputContainer from "../../../components/UI/input/NormalInputContainer";
 import AuthContainer from "../components/AuthContainer";
 

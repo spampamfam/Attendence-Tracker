@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Button from "../buttons/button";
+import Button from "../buttons/Button";
 import DangerButton from "../buttons/DangerButton";
 
 import logo from "/icons/Logo.svg";

@@ -16,12 +16,12 @@ import Calendar from "../features/user/pages/Calendar";
 import Settings from "../features/user/pages/Settings";
 import Sessions from "../features/user/pages/Sessions";
 
-import CourseModal from "../components/UI/modal/CourseModal.jsx";
-import AddCourseModal from "../components/UI/modal/AddCourseModal.jsx";
-import ConfirmModal from "../components/UI/modal/ConfirmModal.jsx";
-import EditCourseModal from "../components/UI/modal/EditCourseModal.jsx";
-import ViewSessionModal from "../components/UI/modal/ViewSessionModal.jsx";
-import EditUserModal from "../components/UI/modal/EditUserModal.jsx";
+import CourseModal from "../components/UI/modal/CourseModal";
+import AddCourseModal from "../components/UI/modal/AddCourseModal";
+import ConfirmModal from "../components/UI/modal/ConfirmModal";
+import EditCourseModal from "../components/UI/modal/EditCourseModal";
+import ViewSessionModal from "../components/UI/modal/ViewSessionModal";
+import EditUserModal from "../components/UI/modal/EditUserModal";
 
 const router = createBrowserRouter([
   //unprotected routes

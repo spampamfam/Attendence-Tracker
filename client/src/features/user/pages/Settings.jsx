@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
-import Button from "../../../components/UI/buttons/button";
+import Button from "../../../components/UI/buttons/Button";
 import HeroContainer from "../../../components/UI/container/HeroContainer";
 import SquareContainer from "../../../components/UI/container/SquareContainer";
 import { editUserModalService } from "../../../services/dispatch/editUserModalService";

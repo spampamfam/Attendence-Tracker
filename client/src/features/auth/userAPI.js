@@ -27,7 +27,6 @@ export const loginHandler = async (email, password) => {
 
     if (userDataError) throw error;
 
-    console.log(userData);
     authService.loginUser(userData);
 
     toast.success("Login Successfully");
