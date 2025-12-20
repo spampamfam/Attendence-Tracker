@@ -16,12 +16,13 @@ import Calendar from "../features/user/pages/Calendar";
 import Settings from "../features/user/pages/Settings";
 import Sessions from "../features/user/pages/Sessions";
 
-import CourseModal from "../components/UI/modal/CourseModal";
-import AddCourseModal from "../components/UI/modal/AddCourseModal";
-import ConfirmModal from "../components/UI/modal/ConfirmModal";
-import EditCourseModal from "../components/UI/modal/EditCourseModal";
-import ViewSessionModal from "../components/UI/modal/ViewSessionModal";
-import EditUserModal from "../components/UI/modal/EditUserModal";
+//testing
+// import CourseModal from "../components/UI/modal/CourseModal";
+// import AddCourseModal from "../components/UI/modal/AddCourseModal";
+// import ConfirmModal from "../components/UI/modal/ConfirmModal";
+// import EditCourseModal from "../components/UI/modal/EditCourseModal";
+// import ViewSessionModal from "../components/UI/modal/ViewSessionModal";
+// import EditUserModal from "../components/UI/modal/EditUserModal";
 
 const router = createBrowserRouter([
   //unprotected routes
@@ -60,27 +61,27 @@ const router = createBrowserRouter([
     ],
   },
   //dev routes for testing
-  {
-    path: "/dev",
-    element: <AppLayout />,
-    children: [
-      {
-        path: "modal",
-        children: [
-          { path: "view", element: <CourseModal /> },
-          { path: "add", element: <AddCourseModal /> },
-          { path: "confirm", element: <ConfirmModal /> },
-          { path: "edit", element: <EditCourseModal /> },
-          { path: "viewsession", element: <ViewSessionModal /> },
-          { path: "edituser", element: <EditUserModal /> },
-        ],
-      },
-      {
-        path: "pages",
-        children: [{ path: "sessions", element: <Sessions /> }],
-      },
-    ],
-  },
+  // {
+  //   path: "/dev",
+  //   element: <AppLayout />,
+  //   children: [
+  //     {
+  //       path: "modal",
+  //       children: [
+  //         { path: "view", element: <CourseModal /> },
+  //         { path: "add", element: <AddCourseModal /> },
+  //         { path: "confirm", element: <ConfirmModal /> },
+  //         { path: "edit", element: <EditCourseModal /> },
+  //         { path: "viewsession", element: <ViewSessionModal /> },
+  //         { path: "edituser", element: <EditUserModal /> },
+  //       ],
+  //     },
+  //     {
+  //       path: "pages",
+  //       children: [{ path: "sessions", element: <Sessions /> }],
+  //     },
+  //   ],
+  // },
 ]);
 
 export default function AppRouter() {

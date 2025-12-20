@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
 import { useMemo } from "react";
 
 import ModalContainer from "../container/ModalContainer";
@@ -12,7 +11,6 @@ import ConfirmModal from "./ConfirmModal";
 import { editCourseModalService } from "../../../services/dispatch/editCourseModalService";
 import { viewCourseModalService } from "../../../services/dispatch/viewCourseModalService";
 import { confirmModalService } from "../../../services/dispatch/confirmModalService";
-import { taskDataService } from "../../../services/dispatch/taskDataService";
 
 import { deleteTask } from "../../../services/Handler/Tasks";
 import EditCourseModal from "./EditCourseModal";
