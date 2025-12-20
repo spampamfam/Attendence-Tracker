@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 import Button from "../buttons/Button";
 import DangerButton from "../buttons/DangerButton";
 
-import logo from "/icons/Logo.svg";
-import dashboard from "/icons/dashboard.svg";
-import courses from "/icons/courses.svg";
-import calender from "/icons/calender.svg";
-import settings from "/icons/settings.svg";
-import logout from "/icons/logout.svg";
-import session from "/icons/session.svg";
+import logo from "../../../../public/icons/Logo.svg";
+import dashboard from "../../../../public/icons/dashboard.svg";
+import courses from "../../../../public/icons/courses.svg";
+import calender from "../../../../public/icons/calender.svg";
+import settings from "../../../../public/icons/settings.svg";
+import logout from "../../../../public/icons/logout.svg";
+import session from "../../../../public/icons/session.svg";
 
 import { logoutHandler } from "../../../features/auth/userAPI";
 
