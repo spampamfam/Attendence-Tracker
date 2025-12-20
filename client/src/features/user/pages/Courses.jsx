@@ -4,8 +4,8 @@ import { useSelector } from "react-redux";
 import HeroContainer from "../../../components/UI/container/HeroContainer";
 import SquareContainer from "../../../components/UI/container/SquareContainer";
 
-import AddCourseModal from "../../../components/UI/modal/AddCourseModal";
-import CourseModal from "../../../components/UI/modal/CourseModal";
+import AddCourseModal from "../../../components/UI/Modal/AddCourseModal";
+import CourseModal from "../../../components/UI/Modal/CourseModal";
 
 import { addCourseModalService } from "../../../services/dispatch/addCourseModalService";
 import { viewCourseModalService } from "../../../services/dispatch/viewCourseModalService";

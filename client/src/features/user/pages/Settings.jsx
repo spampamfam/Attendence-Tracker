@@ -6,7 +6,7 @@ import HeroContainer from "../../../components/UI/container/HeroContainer";
 import SquareContainer from "../../../components/UI/container/SquareContainer";
 import { editUserModalService } from "../../../services/dispatch/editUserModalService";
 
-import EditUserModal from "../../../components/UI/modal/EditUserModal";
+import EditUserModal from "../../../components/UI/Modal/EditUserModal";
 
 export default function Settings() {
   const userData = useSelector((state) => state.auth.user);

@@ -7,9 +7,7 @@ import ModalContainer from "../container/ModalContainer";
 import ModalOverlay from "../overlay/ModalOverlay";
 
 import { addCourseModalService } from "../../../services/dispatch/addCourseModalService";
-import { taskDataService } from "../../../services/dispatch/taskDataService";
 import { newTask } from "../../../services/Handler/Tasks";
-import dateHandler from "../../../services/data/dateHandler";
 
 export default function AddCourseModal() {
   const [title, setTitle] = useState("");
