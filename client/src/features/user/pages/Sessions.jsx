@@ -25,7 +25,7 @@ const Sessions = () => {
   return (
     <>
       <div className="heroContainer no-scrollbar overflow-y-auto text-black">
-        <header className="sticky top-2 pb-10 ">
+        <header className="sticky top-2 bg-white z-5 mb-5">
           <form
             className="filter"
             onChange={(e) => {

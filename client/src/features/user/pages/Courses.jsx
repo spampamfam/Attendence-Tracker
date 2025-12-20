@@ -70,7 +70,7 @@ export default function Courses() {
               </div>
             ))
           ) : (
-            <h1>No Tasks Yet</h1>
+            <h1>Add new Tasks</h1>
           )}
         </section>
       </HeroContainer>

@@ -81,6 +81,11 @@ export default function Signup() {
           >
             Signup
           </button>
+          <footer>
+            <p>
+              You Already Have an Account !!<a href="/login"> Click Here</a>
+            </p>
+          </footer>
         </form>
       </AuthContainer>
     </>

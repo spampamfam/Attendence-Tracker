@@ -7,8 +7,9 @@ const isoToReadableDate = (ISO) => {
     timeZone: "Africa/Cairo",
   }).format(date);
 
+  // console.log(formatted.split(" "));
   return formatted;
-  //   console.log(formatted.split(" "));
 };
 
+// isoToReadableDate("2025-12-18T14:35:41.751+00:00");
 export default isoToReadableDate;

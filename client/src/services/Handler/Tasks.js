@@ -80,7 +80,7 @@ export const getTask = async () => {
     // console.log(coursesData);
 
     taskDataService.fetchData(coursesData);
-      taskDataService.fetchStats(statsData)
+    taskDataService.fetchStats(statsData);
     if (coursesDataError) throw coursesDataError;
   } catch (err) {
     console.error(err.response?.data || err.message);

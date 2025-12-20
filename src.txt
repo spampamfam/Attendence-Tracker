@@ -1,0 +1,54 @@
+src/
+│
+├── api/                     # Axios instance + API configs
+│   ├── axiosClient.js
+│   └── endpoints.js
+│
+├── app/                     # Global Redux store
+│   ├── store.js
+│   └── rootReducer.js
+│
+├── features/                # Feature-based folders
+│   ├── courses/
+│   │   ├── components/      # UI components for this feature
+│   │   ├── pages/           # Pages (CourseList, CourseView, etc.)
+│   │   ├── courseSlice.js   # Redux slice
+│   │   └── courseAPI.js     # API calls for this feature
+│   │
+│   ├── auth/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── authSlice.js
+│   │   └── authAPI.js
+│   │
+│   └── user/
+│       ├── components/
+│       ├── pages/
+│       ├── userSlice.js
+│       └── userAPI.js
+│
+├── hooks/                  # Reusable custom hooks
+│   ├── useAuth.js
+│   └── useFetch.js
+│
+├── components/             # Shared UI components (Buttons, Modals, Navbar)
+│   ├── layout/
+│   ├── ui/
+│   └── Modal.jsx
+│
+├── utils/                  # Helper functions
+│   ├── formatDate.js
+│   └── validation.js
+│
+├── styles/                 # Global styles (CSS/Tailwind config)
+│   └── globals.css
+│
+├── router/                 # React Router setup
+│   └── AppRouter.jsx
+│
+├── assets/                 # Images, icons, fonts
+│   ├── icons/
+│   └── images/
+│
+├── App.jsx                 # Main app component
+└── main.jsx                # Entry point (createRoot)

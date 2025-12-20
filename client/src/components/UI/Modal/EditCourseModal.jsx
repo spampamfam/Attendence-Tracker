@@ -16,6 +16,7 @@ export default function EditCourseModal({ target }) {
   const [title, setTitle] = useState(target.course_name);
   const [name, setName] = useState(target.professor_name);
   const [courseCode, setCourseCode] = useState(target.course_code);
+
   const [startDate, setStartDate] = useState(
     new Date(target.course_sessions[0].start_datetime)
   );
@@ -53,7 +54,7 @@ export default function EditCourseModal({ target }) {
         <ModalContainer>
           {console.log(target)}
           <header className="text-center">
-            <h1>Add New Course</h1>
+            <h1>Edit Course</h1>
           </header>
           <form>
             <h2 className="mt-1">Title</h2>

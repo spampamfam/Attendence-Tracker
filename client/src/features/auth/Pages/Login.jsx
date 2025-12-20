@@ -71,6 +71,11 @@ export default function Login() {
             Login
           </button>
         </form>
+        <footer>
+          <p>
+            You Already Have an Account !!<a href="/signup"> Click Here</a>
+          </p>
+        </footer>
       </AuthContainer>
     </>
   );

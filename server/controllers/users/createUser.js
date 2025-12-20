@@ -1,23 +1,44 @@
-import User from "../../database/schema/userSchema.js";
-import bcrypt from "bcrypt";
+import supabase from "../../database/supabaseClient.js";
 
 export default async function CreateUser(req, res) {
   const { name, email, password } = req.body;
   try {
-    let hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({
-      name: name,
+    const { data: authData, error: authError } = await supabase.auth.signUp({
       email: email,
-      password: hashedPassword,
+      password: password,
     });
-    await newUser.save();
-    res
-      .status(201)
-      .json({
-        message: "User created",
-        userInfo: { name: name, email: email },
+
+    if (authError) {
+      return res
+        .status(400)
+        .json({ message: "Auth Error", error: authError.message });
+    }
+
+    const { data: userProfile, error: profileError } = await supabase
+      .from("users")
+      .insert({
+        id: authData.user.id,
+        name: name,
       });
+
+    if (profileError) {
+      return res
+        .status(400)
+        .json({ message: "DB Error", error: profileError.message });
+    }
+
+    return res.status(201).json({
+      message: "User Created",
+      user: {
+        id: authData.user.id,
+        name,
+        email,
+      },
+    });
   } catch (error) {
-    res.status(400).json({ message: "Error", error: error });
+    return res.status(500).json({
+      message: "Server Error",
+      error: error.message,
+    });
   }
 }

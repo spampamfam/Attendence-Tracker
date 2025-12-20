@@ -21,12 +21,14 @@ export const loginHandler = async (email, password) => {
         email: email,
         password: password,
       });
+
     const payload = {
       id: loginData.user.id,
       email: loginData.user.email,
       role: loginData.user.email,
       created_at: loginData.user.created_at,
     };
+
     authService.loginUser(payload);
 
     // console.log(loginData); // toast message
@@ -43,9 +45,6 @@ export const signupHandler = async (name, email, password) => {
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
-      options: {
-        data: { full_name: name, role: "student" }, // optional user metadata
-      },
     });
 
     if (error) {
@@ -62,9 +61,16 @@ export const signupHandler = async (name, email, password) => {
       id: data.user.id,
       email: data.user.email,
       role: data.user.user_metadata?.role || "student",
-      full_name: data.user.user_metadata?.full_name || name,
+      full_name: name,
       created_at: data.user.created_at,
     };
+
+    const { data: userData, error: userError } = await supabase
+      .from("users")
+      .insert({
+        id: payload.id,
+        name: name,
+      });
 
     authService.loginUser(payload);
 

@@ -50,15 +50,15 @@ export default function NavBar() {
             )}
 
             {isHovered ? (
-              <Button action={() => navigate("/app/sessions")}>Sessions</Button>
-            ) : (
-              <img src={session} className="mx-auto " />
-            )}
-
-            {isHovered ? (
               <Button action={() => navigate("/app/courses")}>Courses</Button>
             ) : (
               <img src={courses} className="mx-auto " />
+            )}
+
+            {isHovered ? (
+              <Button action={() => navigate("/app/sessions")}>Sessions</Button>
+            ) : (
+              <img src={session} className="mx-auto " />
             )}
 
             {/* {isHovered ? (

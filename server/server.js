@@ -1,6 +1,8 @@
 import express from "express";
-import dotenv from "dotenv";
-dotenv.config();
+
+// import dotenv from "dotenv";
+//dotenv configuration is in the supabaseClient for whatever reason
+
 import ejs from "ejs";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -10,6 +12,10 @@ import usersRouter from "./routes/usersRouter.js";
 import calenderRouter from "./routes/calenderRouter.js";
 import taskRouter from "./routes/taskRouter.js";
 import MongoConnect from "./database/mongoose.js";
+import debug from "debug";
+
+const log = debug("app:server");
+log.enabled = true; // enable logging
 
 const PORT = process.env.PORT || 3000;
 
@@ -21,7 +27,6 @@ app.use(
     origin: [
       "http://localhost:5173",
       "http://localhost:4173",
-      "https://nonpejoratively-campanological-leanna.ngrok-free.dev",
       process.env.URL_ORIGIN,
     ], // your frontend
     credentials: true, // allow cookies/auth headers
@@ -36,12 +41,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/auth", authRouter);
-app.use("/users", usersRouter);
-app.use("/calender", calenderRouter);
-app.use("/tasks", taskRouter);
+// app.use("/users", usersRouter);
+// app.use("/calender", calenderRouter);
+// app.use("/tasks", taskRouter);
 
-MongoConnect()
-  .then(() => {
-    app.listen(PORT, () => console.log(`We are Online port:${PORT}`));
-  })
-  .catch(() => console.log("Mongo did not connect"));
+app.get("/test", (req, res) => {
+  res.send(process.env.PORT);
+});
+
+app.listen(PORT, () => log(`http://localhost:${PORT}`));

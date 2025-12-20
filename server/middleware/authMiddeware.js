@@ -1,18 +1,13 @@
-import jwt from "jsonwebtoken";
+const authMiddleware = async (req, res, next) => {
+  const authHeader = req.headers.authorization;
+  const token = authHeader?.split(" ")[1];
 
-function authMiddleware(req, res, next) {
-  const token = req.cookies.access_token;
-  if (!token) return res.redirect("/login");
-
-  try {
-    const decoded = jwt.verify(token, process.env.SECRET_KEY);
-    const { _id } = decoded;
-    res.locals.userId = _id;
-    next();
-  } catch (err) {
-    res.send({ error: err.message });
-    res.redirect("/login");
+  const { data: user, error } = await supabase.auth.getUser(token);
+  if (error) return res.status(401).json({ error: "Unauthorized" });
+  if (error || !user) {
+    return res.status(401).json({ message: "Unauthorized" });
   }
-}
+  next();
+};
 
 export default authMiddleware;
