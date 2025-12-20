@@ -123,7 +123,7 @@ export const editTask = async (payload) => {
 
 export const editSession = async (payload) => {
   const sessionId = payload.id;
-  if (!payload) throw "no Session was Provided";
+  if (!payload) throw new Error("no Session was Provided");
   try {
     const { data, error } = await supabase
       .from("course_sessions")
