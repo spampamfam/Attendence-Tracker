@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../buttons/Button";
 import DangerButton from "../buttons/DangerButton";
 
-import logo from "../../../../public/icons/Logo.svg";
+import logo from "../../../../public/icons/logo.svg";
 import dashboard from "../../../../public/icons/dashboard.svg";
 import courses from "../../../../public/icons/courses.svg";
 import calender from "../../../../public/icons/calender.svg";
