@@ -6,8 +6,11 @@
 @theme {
   /* gradients */
 
-  /* Navy */
-
+  /* main */
+  --color-primary-color: #123267;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #ffe8dd;
+  --color-on-primary-container: #440000;
   /* button */
   --color-normalbtn-default: #1c4a8c;
   --color-normalbtn-hover: #123267;
@@ -26,6 +29,12 @@
   /* text colors */
   --color-danger-text: #b75c3c;
   --color-secondry-text: #123267;
+
+  /* border */
+  --color-border-black: #000000;
+
+  /* text */
+  --color-text-black: #000000;
 }
 
 :root {
@@ -62,9 +71,9 @@
 
 /* group custom styling */
 
-body {
+/* body {
   color: black;
-}
+} */
 
 /* Containers */
 
@@ -159,11 +168,9 @@ body {
 .outfit {
   font-family: "Outfit", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
 }
 
-h1 {
+.header_text {
   font-family: "Outfit", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;

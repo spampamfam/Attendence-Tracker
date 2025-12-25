@@ -1,17 +1,24 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import toast from "react-hot-toast";
 
-import Button from "../../../components/UI/buttons/Button";
+import MainButton from "../../../components/UI/buttons/MainButton";
+import SecondryButton from "../../../components/UI/buttons/SecondryButton";
 import NormalInputContainer from "../../../components/UI/input/NormalInputContainer";
 import AuthContainer from "../components/AuthContainer";
 
 import { loginHandler } from "../userAPI";
 import { useNavigate } from "react-router-dom";
 
+import EyeOpen from "/icons/eyeopen.svg";
+import EyeClose from "/icons/eyeclose.svg";
 export default function Login() {
+  const emailRef = useRef(null);
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isShown, setIsShown] = useState(false);
+  const [pressistSession, setPressistSession] = useState(false);
 
   const emailHandler = (e) => {
     setEmail(e.target.value);
@@ -21,21 +28,31 @@ export default function Login() {
     setPassword(e.target.value);
   };
 
-  const handleSubmission = (e) => {
+  const handleSubmission = async (e) => {
     e.preventDefault();
-    loginHandler(email, password);
-    navigate("/app/dashboard");
-    setEmail("");
-    setPassword("");
+
+    if (email && password) {
+      const res = await loginHandler(email, password, pressistSession);
+      if (res == true) {
+        navigate("/app/dashboard");
+        setEmail("");
+        setPassword("");
+        toast.success("Login Successfully");
+      } else {
+        toast.error("Email or Password are invalid");
+      }
+    } else {
+      toast.error("Email and password are required");
+    }
   };
 
   return (
     <>
       <AuthContainer>
-        <header className="flex flex-col items-center ">
+        <header className="flex flex-col items-center mb-14">
           <svg
-            width="75"
-            height="31"
+            width="100"
+            height="40"
             viewBox="0 0 75 31"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -45,36 +62,65 @@ export default function Login() {
               fill="black"
             />
           </svg>
-          <h2>Attendance Tracker</h2>
+          <h1 className="text-primary-color text-3xl outfit font-bold mt-2">
+            Login
+          </h1>
+          <p className="text-text-black/60 text-xl outfit font-light">
+            Sign in to your account
+          </p>
         </header>
-        <form className="my-15">
-          <h2 className="mb-2">Email/StudentID</h2>
+        <form className="mb-4 grid grid-rows-[95px_50px_25px]">
           <NormalInputContainer
             value={email}
-            type={"text"}
-            placeholder={"Enter your Email"}
+            type={"email"}
             action={emailHandler}
+            label={"Email"}
+            shouldFocus={true}
+            hint={"Enter a valid Email Address"}
           />
 
-          <h2 className="mb-2">Password</h2>
           <NormalInputContainer
             value={password}
-            type={"password"}
-            placeholder={"Enter your Password"}
+            type={isShown ? "text" : "password"}
             action={passwordHandler}
+            label={"Password"}
           />
-          <button
-            type="submit"
-            className="w-[calc(100%-100px)] block mx-auto rounded-xl text-center p-2 bg-normalbtn-default hover:bg-normalbtn-hover text-white text-shadow-black text-shadow-4xs transition-all shadow-2xs shadow-black mt-5"
-            onClick={(e) => handleSubmission(e)}
-          >
-            Login
-          </button>
+          <img
+            src={isShown ? EyeClose : EyeOpen}
+            className="absolute translate-y-26 right-12 cursor-pointer w-6 h-6"
+            onClick={() => {
+              setIsShown(!isShown);
+            }}
+          />
+
+          <label htmlFor="" className="inline-flex mt-6">
+            <input
+              type="checkbox"
+              className="checkbox checkbox-primary checkbox-sm"
+              checked={pressistSession}
+              onChange={(e) => {
+                setPressistSession(e.target.checked);
+              }}
+            />
+
+            <p className="text-black ml-1 pb-1 text-sm">Remember me</p>
+          </label>
         </form>
+        <MainButton onClick={handleSubmission}>Login</MainButton>
         <footer>
-          <p>
-            You Already Have an Account !!<a href="/signup"> Click Here</a>
+          <p className="text-text-black/80 text-xs text-center my-4">
+            I forgot my password.{" "}
+            <a className="underline text-blue-700/50 cursor-pointer">
+              Click here to reset
+            </a>
           </p>
+          <SecondryButton
+            onClick={() => {
+              navigate("/signup");
+            }}
+          >
+            Register New Account
+          </SecondryButton>
         </footer>
       </AuthContainer>
     </>

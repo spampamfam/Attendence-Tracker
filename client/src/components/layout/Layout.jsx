@@ -1,6 +1,4 @@
 import { Outlet } from "react-router-dom";
-import NavBar from "../UI/navbar/NavBar";
-import HeroContainer from "../UI/container/HeroContainer";
 
 export default function AppLayout() {
   return (

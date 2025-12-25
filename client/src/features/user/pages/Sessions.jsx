@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import HeroContainer from "../../../components/UI/container/HeroContainer";
+import MainContainer from "../../../components/UI/container/MainContainer";
 import HalfChildContainer from "../../../components/UI/container/HalfChildContainer";
 import isoToReadableDate from "../../../services/data/isoToReadableDate";
 import SessionComponent from "../components/SessionComponent";

@@ -20,6 +20,7 @@
     "@schedule-x/theme-default": "^3.4.2",
     "@supabase/supabase-js": "^2.87.1",
     "@tailwindcss/vite": "^4.1.17",
+    "@vercel/analytics": "^1.6.1",
     "axios": "^1.13.2",
     "dotenv": "^17.2.3",
     "luxon": "^3.7.2",

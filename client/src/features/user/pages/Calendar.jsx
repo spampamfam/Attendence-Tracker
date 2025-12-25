@@ -14,7 +14,7 @@ import { createEventModalPlugin } from "@schedule-x/event-modal";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
-import HeroContainer from "../../../components/UI/container/HeroContainer";
+import MainContainer from "../../../components/UI/container/MainContainer";
 import { seedCalendarData } from "../../../services/data/seedCalendarData";
 import { taskDataService } from "../../../services/dispatch/taskDataService";
 

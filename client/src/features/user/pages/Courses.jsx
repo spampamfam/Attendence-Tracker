@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-import HeroContainer from "../../../components/UI/container/HeroContainer";
+import MainContainer from "../../../components/UI/container/MainContainer";
 import SquareContainer from "../../../components/UI/container/SquareContainer";
 
 import AddCourseModal from "../../../components/UI/Modal/AddCourseModal";
@@ -23,7 +23,7 @@ export default function Courses() {
 
   return (
     <>
-      <HeroContainer>
+      <MainContainer>
         <header className="flex justify-between">
           <h1 className="outfit text-4xl bold text-shadow-2xs">Courses</h1>
           <button
@@ -73,7 +73,7 @@ export default function Courses() {
             <h1>Add new Tasks</h1>
           )}
         </section>
-      </HeroContainer>
+      </MainContainer>
       {isViewAddCourseModalOpen && <CourseModal />}
       {isAddCourseModalOpen && <AddCourseModal />}
     </>

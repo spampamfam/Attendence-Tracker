@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Button from "../buttons/Button";
+import MainButton from "../buttons/MainButton";
 import DangerButton from "../buttons/DangerButton";
 
-import logo from "../../../../public/icons/logo.svg";
-import dashboard from "../../../../public/icons/dashboard.svg";
-import courses from "../../../../public/icons/courses.svg";
-import calender from "../../../../public/icons/calender.svg";
-import settings from "../../../../public/icons/settings.svg";
-import logout from "../../../../public/icons/logout.svg";
-import session from "../../../../public/icons/session.svg";
+import logo from "/icons/Logo.svg";
+import dashboard from "/icons/dashboard.svg";
+import courses from "/icons/courses.svg";
+import calender from "/icons/calender.svg";
+import settings from "/icons/settings.svg";
+import logout from "/icons/logout.svg";
+import session from "/icons/session.svg";
 
 import { logoutHandler } from "../../../features/auth/userAPI";
 
@@ -42,21 +42,25 @@ export default function NavBar() {
           </section>
           <section className="flex flex-col justify-between items-center gap-4">
             {isHovered ? (
-              <Button action={() => navigate("/app/dashboard")}>
+              <MainButton action={() => navigate("/app/dashboard")}>
                 Dashboard
-              </Button>
+              </MainButton>
             ) : (
               <img src={dashboard} className="mx-auto " />
             )}
 
             {isHovered ? (
-              <Button action={() => navigate("/app/courses")}>Courses</Button>
+              <MainButton action={() => navigate("/app/courses")}>
+                Courses
+              </MainButton>
             ) : (
               <img src={courses} className="mx-auto " />
             )}
 
             {isHovered ? (
-              <Button action={() => navigate("/app/sessions")}>Sessions</Button>
+              <MainButton action={() => navigate("/app/sessions")}>
+                Sessions
+              </MainButton>
             ) : (
               <img src={session} className="mx-auto " />
             )}
@@ -70,7 +74,9 @@ export default function NavBar() {
         </header>
         <footer className="flex flex-col justify-between items-center gap-4">
           {isHovered ? (
-            <Button action={() => navigate("/app/settings")}>Settings</Button>
+            <MainButton action={() => navigate("/app/settings")}>
+              Settings
+            </MainButton>
           ) : (
             <img src={settings} className="mx-auto " />
           )}

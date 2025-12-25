@@ -12,7 +12,6 @@ export const loginHandler = async (email, password) => {
   // remove the error handler to the main component
 
   try {
-    //
     const { data: loginData, error: loginError } =
       await supabase.auth.signInWithPassword({
         email: email,
@@ -29,9 +28,10 @@ export const loginHandler = async (email, password) => {
 
     authService.loginUser(userData);
 
-    toast.success("Login Successfully");
+    return true;
   } catch (loginError) {
     console.error(loginError);
+    return false;
   }
 };
 

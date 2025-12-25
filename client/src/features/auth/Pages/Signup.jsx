@@ -2,8 +2,11 @@
 
 import { useState } from "react";
 
+import MainButton from "../../../components/UI/buttons/MainButton";
+import SecondryButton from "../../../components/UI/buttons/SecondryButton";
 import NormalInputContainer from "../../../components/UI/input/NormalInputContainer";
 import AuthContainer from "../components/AuthContainer";
+import SignupContainer from "../components/SignupContainer";
 
 import { signupHandler } from "../userAPI";
 
@@ -34,8 +37,8 @@ export default function Signup() {
 
   return (
     <>
-      <AuthContainer>
-        <header className="flex flex-col items-center ">
+      <SignupContainer>
+        <header className="flex flex-col items-center mb-14">
           <svg
             width="75"
             height="31"
@@ -48,46 +51,47 @@ export default function Signup() {
               fill="black"
             />
           </svg>
-          <h2>Attendance Tracker</h2>
+          <h1 className="text-primary-color text-3xl outfit font-bold mt-2">
+            Signup
+          </h1>
+          <p className="text-text-black/60 text-xl outfit font-light">
+            Register New Account
+          </p>
         </header>
-        <form className="my-15">
-          <h2 className="mb-2">Name</h2>
+        <form className="mb-4 grid grid-rows-[80px_100px_50px_20px]">
           <NormalInputContainer
             value={name}
             type={"text"}
-            placeholder={"Enter your Name"}
             action={nameHandler}
+            label={"Name"}
+            hint={"You can't leave the Name blank"}
           />
 
-          <h2 className="mb-2">Email/StudentID</h2>
           <NormalInputContainer
             value={email}
-            type={"text"}
-            placeholder={"Enter your Email"}
+            type={"email"}
             action={emailHandler}
+            label={"Email"}
+            hint={"Please enter a valid email"}
           />
 
-          <h2 className="mb-2">Password</h2>
           <NormalInputContainer
             value={password}
             type={"password"}
-            placeholder={"Enter your Password"}
             action={passwordHandler}
+            label={"Password"}
+            regex={"(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8,}"}
           />
-          <button
-            type="submit"
-            className="w-[calc(100%-100px)] block mx-auto rounded-xl text-center p-2 bg-normalbtn-default hover:bg-normalbtn-hover text-white text-shadow-black text-shadow-4xs transition-all shadow-2xs shadow-black mt-5"
-            onClick={handleSubmission}
-          >
-            Signup
-          </button>
-          <footer>
-            <p>
-              You Already Have an Account !!<a href="/login"> Click Here</a>
-            </p>
-          </footer>
+          <p className="text-text-black/80 text-[11px] text-start">
+            Password must be more then 8 characters At least one number, one
+            lowercase letter, one uppercase letter
+          </p>
         </form>
-      </AuthContainer>
+        <MainButton onClick={handleSubmission}>Signup</MainButton>
+        <footer className="mt-4">
+          <SecondryButton>Already have an account</SecondryButton>
+        </footer>
+      </SignupContainer>
     </>
   );
 }
