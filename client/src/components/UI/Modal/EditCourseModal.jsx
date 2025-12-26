@@ -11,6 +11,8 @@ import { editCourseModalService } from "../../../services/dispatch/editCourseMod
 import { taskDataService } from "../../../services/dispatch/taskDataService";
 import { editTask } from "../../../services/Handler/Tasks";
 import dateHandler from "../../../services/data/dateHandler";
+import NormalInputContainer from "../input/app/NormalInputContainer";
+import MainButton from "../buttons/app/MainButton";
 
 export default function EditCourseModal({ target }) {
   const [title, setTitle] = useState(target.course_name);
@@ -54,34 +56,31 @@ export default function EditCourseModal({ target }) {
         <ModalContainer>
           {console.log(target)}
           <header className="text-center">
-            <h1>Edit Course</h1>
+            <h1 className="text-2xl font-semibold">Edit Course</h1>
           </header>
           <form>
             <h2 className="mt-1">Title</h2>
-            <input
-              type="text"
+            <NormalInputContainer
+              type={"text"}
               value={title}
-              placeholder="Enter the Course name"
+              placeholder={"Enter the Course name"}
               onChange={(e) => setTitle(e.target.value)}
-              className="normalInput"
             />
 
             <h2 className="mt-1">Course Code</h2>
-            <input
-              type="text"
+            <NormalInputContainer
+              type={"text"}
               value={courseCode}
-              placeholder="Enter the Course's code"
+              placeholder={"Enter the Course's code"}
               onChange={(e) => setCourseCode(e.target.value)}
-              className="normalInput"
             />
 
             <h2 className="mt-1">Prof. Name</h2>
-            <input
-              type="text"
+            <NormalInputContainer
+              type={"text"}
               value={name}
-              placeholder="Enter the professor's name"
+              placeholder={"Enter the professor's name"}
               onChange={(e) => setName(e.target.value)}
-              className="normalInput"
             />
 
             <h2 className="mt-1">Start</h2>
@@ -90,7 +89,7 @@ export default function EditCourseModal({ target }) {
               onChange={(date) => setStartDate(date)}
               showTimeSelect
               dateFormat="Pp" //change this if you wanna change the format
-              className="border rounded-md p-2 bg-input-container w-[320px]"
+              className="border rounded-md p-2 bg-input-container w-[280px] sm:w-[320px]"
             />
 
             <h2 className="mt-1">End</h2>
@@ -99,19 +98,19 @@ export default function EditCourseModal({ target }) {
               onChange={(date) => setEndDate(date)}
               showTimeSelect
               dateFormat="Pp"
-              className="border rounded-md p-2 bg-input-container w-[320px]"
+              className="border rounded-md p-2 bg-input-container w-[280px] sm:w-[320px]"
             />
           </form>
 
           <footer className="mt-8 flex justify-center">
-            <button
+            <MainButton
               className="normalButton"
               onClick={(e) => {
                 handleSubmission(e);
               }}
             >
               Save
-            </button>
+            </MainButton>
           </footer>
         </ModalContainer>
       </ModalOverlay>

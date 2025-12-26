@@ -15,6 +15,8 @@ import { confirmModalService } from "../../../services/dispatch/confirmModalServ
 import { deleteTask } from "../../../services/Handler/Tasks";
 import EditCourseModal from "./EditCourseModal";
 import isoToReadableDate from "../../../services/data/isoToReadableDate";
+import DangerButton from "../buttons/app/DangerButton";
+import MainButton from "../buttons/app/MainButton";
 
 export default function CourseModal() {
   const isConfirmModalOpen = useSelector((state) => state.confirmModal.open);
@@ -89,38 +91,40 @@ export default function CourseModal() {
       >
         <ModalContainer>
           <header className="text-center">
-            <h1>{target.course_name || "N/A"}</h1>
-            <p className="outfit text-lg ">{target.professor_name}</p>
+            <h1 className="text-2xl font-semibold">
+              {target.course_name || "N/A"}
+            </h1>
+            <p className="outfit sm:text-lg text-xl">{target.professor_name}</p>
           </header>
           <section className="mt-2 text-center">
             <h2>Classes</h2>
-            <section className="grid grid-cols-3 gap-2">
-              <div className="text-center">
-                <h3>Attendence</h3>
+            <section className="grid grid-cols-[150px_150px] sm:grid-cols-3 gap-2 mx-2">
+              <div className="text-left">
+                <h3 className="pl-2">Attendence</h3>
                 <HalfDivContainer>
                   {computed.attendancePercentage}%
                 </HalfDivContainer>
               </div>
-              <div className="text-center">
-                <h3>Attended</h3>
+              <div className="text-left">
+                <h3 className="pl-2">Attendence</h3>
                 <HalfDivContainer>
                   {targetStats.attended_count || 0}
                 </HalfDivContainer>
               </div>
-              <div className="text-center">
-                <h3>Total</h3>
+              <div className="text-left">
+                <h3 className="pl-8">Total</h3>
                 <HalfDivContainer>
                   {targetStats.total_sessions}
                 </HalfDivContainer>
               </div>
-              <div className="text-center">
-                <h3>Prof Abscent</h3>
+              <div className="text-left">
+                <h3 className="pl-2">prof Abscent</h3>
                 <HalfDivContainer>
                   {targetStats.prof_absent_count}
                 </HalfDivContainer>
               </div>
-              <div className="text-center">
-                <h3>Excused</h3>
+              <div className="text-left">
+                <h3 className="pl-2">Attendence</h3>
                 <HalfDivContainer>{targetStats.excused_count}</HalfDivContainer>
               </div>
             </section>
@@ -147,7 +151,7 @@ export default function CourseModal() {
                 <HalfDivContainer>{"N/A"}</HalfDivContainer>
               </div> */}
           </section>
-          <h2>Schedule</h2>
+          <h2 className="text-center mb-2">Schedule</h2>
           <section className="flex flex-col justify-between gap-2">
             <div className="flex gap-2 ">
               <h2 className="mt-1">Days:</h2>
@@ -181,22 +185,21 @@ export default function CourseModal() {
             </section> 
           </section>*/}
           <footer className="mt-4 flex gap-2">
-            <button
+            <MainButton
               className="normalButton"
               onClick={() => {
                 editCourseModalService.setOpen();
               }}
             >
               Edit
-            </button>
-            <button
-              className="dangerButton"
+            </MainButton>
+            <DangerButton
               onClick={() => {
                 confirmModalService.setOpen();
               }}
             >
               Delete
-            </button>
+            </DangerButton>
           </footer>
         </ModalContainer>
       </ModalOverlay>

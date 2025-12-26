@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
-import MainButton from "../../../components/UI/buttons/MainButton";
+import MainButton from "../../../components/UI/buttons/app/MainButton";
 import MainContainer from "../../../components/UI/container/MainContainer";
 import SquareContainer from "../../../components/UI/container/SquareContainer";
 import { editUserModalService } from "../../../services/dispatch/editUserModalService";
@@ -15,7 +15,7 @@ export default function Settings() {
   );
 
   return (
-    <HeroContainer>
+    <MainContainer>
       <h1 className="outfit text-4xl bold text-shadow-2xs">Settings</h1>
       <section className="p-4">
         <h2 className="outfit text-4xl bold text-shadow-2xs mb-2">Account</h2>
@@ -51,15 +51,15 @@ export default function Settings() {
         </div>
         <footer className="mt-2 flex gap-2">
           <MainButton>Change Password</MainButton>
-          <button
+          <MainButton
             className="btn"
             onClick={() => editUserModalService.setOpen()}
           >
             Edit Info
-          </button>
+          </MainButton>
         </footer>
       </section>
       {isEditUserModalServiceOpen && <EditUserModal />}
-    </HeroContainer>
+    </MainContainer>
   );
 }

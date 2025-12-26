@@ -38,19 +38,20 @@ const SessionComponent = ({ session }) => {
         <h2>{targetCourse.course_name}</h2>
         <h3>Starts: {isoToReadableDate(session.start_datetime)}</h3>
         {/* <h3>ends: {isoToReadableDate(session.end_datetime)}</h3> */}
-        <div className="dropdown text-white">
-          <div tabIndex={0} role="button" className="btn m-1">
+        <div className="dropdown  text-white">
+          <div tabIndex={0} role="button" className="btn btn-primary m-1">
             {sessionStatus}
           </div>
           <ul
             tabIndex="-1"
-            className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+            className="dropdown-content menu bg-primary-color rounded-box z-1 w-52 p-2 shadow-sm"
             onChange={(e) => {
               setSessionStatus(e.target.value);
             }}
           >
             <li>
               <a
+                className="border-b border-black/20"
                 onClick={() => {
                   setSessionStatus("scheduled");
                   document.activeElement.blur();
@@ -61,6 +62,7 @@ const SessionComponent = ({ session }) => {
             </li>
             <li>
               <a
+                className="border-b border-black/20"
                 onClick={() => {
                   setSessionStatus("attended");
                   document.activeElement.blur();
@@ -71,6 +73,7 @@ const SessionComponent = ({ session }) => {
             </li>
             <li>
               <a
+                className="border-b border-black/20"
                 onClick={() => {
                   setSessionStatus("absent");
                   document.activeElement.blur();
@@ -81,6 +84,7 @@ const SessionComponent = ({ session }) => {
             </li>
             <li>
               <a
+                className="border-b border-black/20"
                 onClick={() => {
                   setSessionStatus("Prof absent");
                   document.activeElement.blur();
@@ -91,6 +95,7 @@ const SessionComponent = ({ session }) => {
             </li>
             <li>
               <a
+                className="border-b border-black/20"
                 onClick={() => {
                   setSessionStatus("excused");
                   document.activeElement.blur();

@@ -24,8 +24,8 @@ const Sessions = () => {
 
   return (
     <>
-      <div className="heroContainer no-scrollbar overflow-y-auto text-black">
-        <header className="sticky top-2 bg-white z-5 mb-5">
+      <MainContainer>
+        <header className="sticky top-0 bg-white p-5 border-black/10 shadow-2xl border-2 h-20 z-5 mb-5 overflow-x-auto no-scrollbar">
           <form
             className="filter"
             onChange={(e) => {
@@ -34,7 +34,7 @@ const Sessions = () => {
           >
             {data.map((task) => (
               <input
-                className="btn"
+                className="btn btn-primary"
                 type="radio"
                 name="target"
                 aria-label={task.course_name}
@@ -43,7 +43,7 @@ const Sessions = () => {
               />
             ))}
             <input
-              className="btn btn-square"
+              className="btn btn-square btn-error"
               type="reset"
               value="x"
               onClick={() => setTargetId("x")}
@@ -70,7 +70,7 @@ const Sessions = () => {
                 );
               })}
         </section>
-      </div>
+      </MainContainer>
     </>
   );
 };

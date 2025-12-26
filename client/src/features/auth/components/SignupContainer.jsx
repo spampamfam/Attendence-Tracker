@@ -5,7 +5,7 @@ export default function SignupContainer({ children }) {
         className={`bg-hero-container  
               w-[90%] p-8 
               sm:w-[50%] 
-              min-h-[500px] 
+              h-auto 
             border-border-black shadow-2xl shadow-black/80 
             relative`}
       >

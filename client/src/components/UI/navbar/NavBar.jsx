@@ -1,93 +1,37 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { AnimatePresence } from "motion/react";
 
-import MainButton from "../buttons/MainButton";
-import DangerButton from "../buttons/DangerButton";
+import HoverBar from "./hoverbar/HoverBar";
 
-import logo from "/icons/Logo.svg";
-import dashboard from "/icons/dashboard.svg";
-import courses from "/icons/courses.svg";
-import calender from "/icons/calender.svg";
-import settings from "/icons/settings.svg";
-import logout from "/icons/logout.svg";
-import session from "/icons/session.svg";
-
-import { logoutHandler } from "../../../features/auth/userAPI";
+import linesIcon from "/icons/lines.svg";
+import SmallButton from "../buttons/smallButton";
 
 export default function NavBar() {
-  const navigate = useNavigate();
-  const [isHovered, setIsHovered] = useState(false);
+  const [isHoverBarOpen, setIsHoverBarOpen] = useState(false);
 
   return (
     <>
       <nav
-        className="sticky left-0 top-0 w-18 bg-linear-to-b from-[#0B1F44] to-[#123267] h-screen hover:w-50 transition-all duration-350 py-4 group flex flex-col gap-5 justify-between z-50"
-        onMouseEnter={() => {
-          setTimeout(() => {
-            setIsHovered(true);
-          }, 200);
-        }}
-        onMouseLeave={() => {
-          setTimeout(() => {
-            setIsHovered(false);
-          }, 150);
-        }}
+        className="sticky top-0 w-full h-20
+        bg-primary-color
+         p-5 z-50 
+          flex gap-5"
       >
-        <header>
-          <section className="mb-6">
-            <img src={logo} className="mx-auto" />
-            <p className="bold outfit text-2xl text-center text-white opacity-0 group-hover:opacity-100 hover-fade ">
-              Attendance Tracker
-            </p>
-          </section>
-          <section className="flex flex-col justify-between items-center gap-4">
-            {isHovered ? (
-              <MainButton action={() => navigate("/app/dashboard")}>
-                Dashboard
-              </MainButton>
-            ) : (
-              <img src={dashboard} className="mx-auto " />
-            )}
-
-            {isHovered ? (
-              <MainButton action={() => navigate("/app/courses")}>
-                Courses
-              </MainButton>
-            ) : (
-              <img src={courses} className="mx-auto " />
-            )}
-
-            {isHovered ? (
-              <MainButton action={() => navigate("/app/sessions")}>
-                Sessions
-              </MainButton>
-            ) : (
-              <img src={session} className="mx-auto " />
-            )}
-
-            {/* {isHovered ? (
-              <Button action={() => navigate("/app/calendar")}>Calender</Button>
-            ) : (
-              <img src={calender} className="mx-auto " />
-            )} */}
-          </section>
-        </header>
-        <footer className="flex flex-col justify-between items-center gap-4">
-          {isHovered ? (
-            <MainButton action={() => navigate("/app/settings")}>
-              Settings
-            </MainButton>
-          ) : (
-            <img src={settings} className="mx-auto " />
-          )}
-
-          {isHovered ? (
-            <DangerButton action={logoutHandler}>Logout</DangerButton>
-          ) : (
-            <img src={logout} className="mx-auto " />
-          )}
-        </footer>
+        <SmallButton onClick={() => setIsHoverBarOpen(true)}>
+          <img src={linesIcon} className="w-4 h-4" />
+        </SmallButton>
+        <h1 className="text-center text-3xl font-semibold sm:font-bold">
+          Attendance Tracker
+        </h1>
       </nav>
+      <AnimatePresence initial={false}>
+        {isHoverBarOpen && (
+          <HoverBar
+            setIsHoverBarOpen={setIsHoverBarOpen}
+            isHoverBarOpen={isHoverBarOpen}
+          />
+        )}
+      </AnimatePresence>
     </>
   );
 }

@@ -17,12 +17,12 @@ import Settings from "../features/user/pages/Settings";
 import Sessions from "../features/user/pages/Sessions";
 
 //testing
-// import CourseModal from "../components/UI/modal/CourseModal";
-// import AddCourseModal from "../components/UI/modal/AddCourseModal";
-// import ConfirmModal from "../components/UI/modal/ConfirmModal";
-// import EditCourseModal from "../components/UI/modal/EditCourseModal";
-// import ViewSessionModal from "../components/UI/modal/ViewSessionModal";
-// import EditUserModal from "../components/UI/modal/EditUserModal";
+import CourseModal from "../components/UI/Modal/CourseModal";
+import AddCourseModal from "../components/UI/Modal/AddCourseModal";
+import ConfirmModal from "../components/UI/Modal/ConfirmModal";
+import EditCourseModal from "../components/UI/Modal/EditCourseModal";
+import ViewSessionModal from "../components/UI/Modal/ViewSessionModal";
+import EditUserModal from "../components/UI/Modal/EditUserModal";
 
 const router = createBrowserRouter([
   //unprotected routes
@@ -61,27 +61,34 @@ const router = createBrowserRouter([
     ],
   },
   //dev routes for testing
-  // {
-  //   path: "/dev",
-  //   element: <AppLayout />,
-  //   children: [
-  //     {
-  //       path: "modal",
-  //       children: [
-  //         { path: "view", element: <CourseModal /> },
-  //         { path: "add", element: <AddCourseModal /> },
-  //         { path: "confirm", element: <ConfirmModal /> },
-  //         { path: "edit", element: <EditCourseModal /> },
-  //         { path: "viewsession", element: <ViewSessionModal /> },
-  //         { path: "edituser", element: <EditUserModal /> },
-  //       ],
-  //     },
-  //     {
-  //       path: "pages",
-  //       children: [{ path: "sessions", element: <Sessions /> }],
-  //     },
-  //   ],
-  // },
+  {
+    path: "/dev",
+    // element: <AppLayout />,
+    children: [
+      {
+        path: "modal",
+        children: [
+          { path: "view", element: <CourseModal /> },
+          { path: "add", element: <AddCourseModal /> },
+          { path: "confirm", element: <ConfirmModal /> },
+          { path: "edit", element: <EditCourseModal /> },
+          { path: "viewsession", element: <ViewSessionModal /> },
+          { path: "edituser", element: <EditUserModal /> },
+        ],
+      },
+      {
+        path: "pages",
+        children: [{ path: "sessions", element: <Sessions /> }],
+      },
+      {
+        path: "layout",
+        children: [
+          { path: "normal", element: <Layout /> },
+          { path: "app", element: <AppLayout /> },
+        ],
+      },
+    ],
+  },
 ]);
 
 export default function AppRouter() {

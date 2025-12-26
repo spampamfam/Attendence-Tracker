@@ -34,7 +34,7 @@ export default function Login() {
     if (email && password) {
       const res = await loginHandler(email, password, pressistSession);
       if (res == true) {
-        navigate("/app/dashboard");
+        navigate("/app");
         setEmail("");
         setPassword("");
         toast.success("Login Successfully");
@@ -69,7 +69,10 @@ export default function Login() {
             Sign in to your account
           </p>
         </header>
-        <form className="mb-4 grid grid-rows-[95px_50px_25px]">
+        <form
+          className="mb-4 grid grid-rows-[95px_50px_25px]"
+          onSubmit={handleSubmission}
+        >
           <NormalInputContainer
             value={email}
             type={"email"}
@@ -77,6 +80,12 @@ export default function Login() {
             label={"Email"}
             shouldFocus={true}
             hint={"Enter a valid Email Address"}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                console.log("Enter pressed");
+              }
+            }}
           />
 
           <NormalInputContainer
@@ -85,18 +94,18 @@ export default function Login() {
             action={passwordHandler}
             label={"Password"}
           />
-          <img
+          {/* <img
             src={isShown ? EyeClose : EyeOpen}
             className="absolute translate-y-26 right-12 cursor-pointer w-6 h-6"
             onClick={() => {
               setIsShown(!isShown);
             }}
-          />
+          /> */}
 
-          <label htmlFor="" className="inline-flex mt-6">
+          {/* <label htmlFor="" className="inline-flex mt-6 mb-4">
             <input
               type="checkbox"
-              className="checkbox checkbox-primary checkbox-sm"
+              className="checkbox checkbox-primary checkbox-sm "
               checked={pressistSession}
               onChange={(e) => {
                 setPressistSession(e.target.checked);
@@ -104,7 +113,7 @@ export default function Login() {
             />
 
             <p className="text-black ml-1 pb-1 text-sm">Remember me</p>
-          </label>
+          </label> */}
         </form>
         <MainButton onClick={handleSubmission}>Login</MainButton>
         <footer>

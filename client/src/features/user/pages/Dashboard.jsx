@@ -3,6 +3,10 @@ import { useMemo } from "react";
 import isoToReadableDate from "../../../services/data/isoToReadableDate";
 
 import DashboardChartComponent from "../components/DashboardChartComponent";
+import MainContainer from "../../../components/UI/container/MainContainer";
+import ChildContainer from "../../../components/UI/container/ChildContainer";
+import BiggerChildContainer from "../../../components/UI/container/BiggerChildContainer";
+
 export default function Dashboard() {
   const user = useSelector((state) => state.auth.user);
   const data = useSelector((state) => state.tasks.data);
@@ -68,19 +72,21 @@ export default function Dashboard() {
   }, [data, stats]);
 
   return (
-    <div className="heroContainer overflow-y-auto">
+    <MainContainer>
       <h1 className="outfit text-2xl font-bold text-shadow-2xs">
         Welcome, {user?.name || "Student"}
       </h1>
       <section className="p-4">
-        <div className="grid grid-cols-2 gap-4 pb-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 grid-rows-1 sm:grid-rows-[180px_180px] gap-4 pb-4">
           {/* USER INFO */}
-          <div className="dashboardChildContainer">
-            <h1>User Info</h1>
-            <h2>Name: {user?.name || "N/A"}</h2>
-            <h2>College: {user?.college || "N/A"}</h2>
-            <h2>Major: {user?.major || "N/A"}</h2>
-          </div>
+          <ChildContainer>
+            <h1 className="text-xl font-semibold">User Info</h1>
+            <section className="text-left mt-2 flex flex-col gap-2">
+              <h2>Name: {user?.name || "N/A"}</h2>
+              <h2>College: {user?.college || "N/A"}</h2>
+              <h2>Major: {user?.major || "N/A"}</h2>
+            </section>
+          </ChildContainer>
 
           {/* COURSES OVERVIEW */}
           {/* <div className="dashboardChildContainer">
@@ -93,9 +99,33 @@ export default function Dashboard() {
             ))}
           </div> */}
           {/* ATTENDANCE CHART */}
-          <div className="dashboardChildContainer">
+          <BiggerChildContainer>
             <DashboardChartComponent data={pieData} />
-          </div>
+          </BiggerChildContainer>
+
+          <ChildContainer extraClass={" row-start-2 sm:col-start-1"}>
+            <h1 className="text-xl font-semibold">Overreview</h1>
+            <section className="text-left mt-2 flex flex-col gap-2">
+              <h2>Total Courses: {data.length}</h2>
+              <h2>
+                Average Attendance:{" "}
+                {dashboardCourses.length > 0
+                  ? Math.round(
+                      dashboardCourses.reduce(
+                        (sum, course) => sum + course.attendancePercentage,
+                        0
+                      ) / dashboardCourses.length
+                    )
+                  : 0}
+                %
+              </h2>
+
+              <h2>
+                Attended:{" "}
+                {stats.reduce((sum, s) => sum + (s.attended_count || 0), 0)}
+              </h2>
+            </section>
+          </ChildContainer>
         </div>
 
         {/* UPCOMING SESSIONS */}
@@ -106,21 +136,23 @@ export default function Dashboard() {
           {upcomingSessions.length === 0 ? (
             <p>No upcoming sessions</p>
           ) : (
-            <div className="">
+            <div className="flex flex-col gap-2 ">
               {upcomingSessions.map((s, idx) => (
-                <div key={idx} className="dashboardMiniChildContainer">
+                <div
+                  key={idx}
+                  className="dashboardMiniChildContainer text-sm sm:text-lg"
+                >
                   <p>
                     <strong>{s.courseName}</strong> -{" "}
                     {isoToReadableDate(s.start_datetime)}
                   </p>
                   <p>Location: {s.location || "N/A"}</p>
-                  <p>Status: {s.status}</p>
                 </div>
               ))}
             </div>
           )}
         </div>
       </section>
-    </div>
+    </MainContainer>
   );
 }

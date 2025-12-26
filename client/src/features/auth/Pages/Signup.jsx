@@ -4,9 +4,12 @@ import { useState } from "react";
 
 import MainButton from "../../../components/UI/buttons/MainButton";
 import SecondryButton from "../../../components/UI/buttons/SecondryButton";
+import SmallButton from "../../../components/UI/buttons/smallButton";
 import NormalInputContainer from "../../../components/UI/input/NormalInputContainer";
 import AuthContainer from "../components/AuthContainer";
 import SignupContainer from "../components/SignupContainer";
+
+import next from "/icons/next.svg";
 
 import { signupHandler } from "../userAPI";
 
@@ -17,13 +20,6 @@ export default function Signup() {
 
   const nameHandler = (e) => {
     setName(e.target.value);
-  };
-  const emailHandler = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const passwordHandler = (e) => {
-    setPassword(e.target.value);
   };
 
   const handleSubmission = (e) => {
@@ -58,37 +54,19 @@ export default function Signup() {
             Register New Account
           </p>
         </header>
-        <form className="mb-4 grid grid-rows-[80px_100px_50px_20px]">
+        <form className="grid grid-rows-[70px]">
           <NormalInputContainer
             value={name}
             type={"text"}
             action={nameHandler}
-            label={"Name"}
-            hint={"You can't leave the Name blank"}
+            label={"What should we call you?"}
           />
-
-          <NormalInputContainer
-            value={email}
-            type={"email"}
-            action={emailHandler}
-            label={"Email"}
-            hint={"Please enter a valid email"}
-          />
-
-          <NormalInputContainer
-            value={password}
-            type={"password"}
-            action={passwordHandler}
-            label={"Password"}
-            regex={"(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8,}"}
-          />
-          <p className="text-text-black/80 text-[11px] text-start">
-            Password must be more then 8 characters At least one number, one
-            lowercase letter, one uppercase letter
-          </p>
         </form>
-        <MainButton onClick={handleSubmission}>Signup</MainButton>
-        <footer className="mt-4">
+        <footer className=" flex flex-col items-center gap-4">
+          <SmallButton>
+            <img src={next} className="w-5 h-5" />
+          </SmallButton>
+
           <SecondryButton>Already have an account</SecondryButton>
         </footer>
       </SignupContainer>

@@ -1,4 +1,4 @@
-export default function Button({ children, onClick }) {
+export default function MainBUtton({ children, onClick }) {
   return (
     <>
       <button

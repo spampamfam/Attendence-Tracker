@@ -43,7 +43,9 @@ export default function AddCourseModal() {
       >
         <ModalContainer>
           <header className="text-center">
-            <h1>Add New Course</h1>
+            <h1 className="text-2xl sm:text-3xl font-semibold">
+              Add New Course
+            </h1>
           </header>
           <form>
             <h2 className="mt-1">Title</h2>

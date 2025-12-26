@@ -3,12 +3,16 @@ import { useSelector } from "react-redux";
 
 import MainContainer from "../../../components/UI/container/MainContainer";
 import SquareContainer from "../../../components/UI/container/SquareContainer";
+import ChildContainer from "../../../components/UI/container/ChildContainer";
 
 import AddCourseModal from "../../../components/UI/Modal/AddCourseModal";
 import CourseModal from "../../../components/UI/Modal/CourseModal";
 
+import add from "/icons/add.svg";
+
 import { addCourseModalService } from "../../../services/dispatch/addCourseModalService";
 import { viewCourseModalService } from "../../../services/dispatch/viewCourseModalService";
+import MainButton from "../../../components/UI/buttons/app/MainButton";
 
 export default function Courses() {
   const data = useSelector((state) => state.tasks.data);
@@ -24,37 +28,29 @@ export default function Courses() {
   return (
     <>
       <MainContainer>
-        <header className="flex justify-between">
-          <h1 className="outfit text-4xl bold text-shadow-2xs">Courses</h1>
-          <button
+        <header className="flex justify-between w-full">
+          <h1 className="outfit text-3xl sm:text-4xl text-shadow-2xs text-black">
+            Courses
+          </h1>
+          <MainButton
             className="min-w-[150px] h-13 rounded-xl text-center p-2 bg-normalbtn-default hover:bg-normalbtn-hover text-white text-shadow-black text-shadow-4xs transition-all shadow-2xs shadow-black inline-flex justify-center items-center"
             onClick={() => {
               addCourseModalService.setOpen();
             }}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fill="#fff"
-                d="M11 13H6q-.425 0-.712-.288T5 12t.288-.712T6 11h5V6q0-.425.288-.712T12 5t.713.288T13 6v5h5q.425 0 .713.288T19 12t-.288.713T18 13h-5v5q0 .425-.288.713T12 19t-.712-.288T11 18z"
-              />
-            </svg>
+            <img src={add} />
             <span className="mr-2">Add Course</span>
-          </button>
+          </MainButton>
         </header>
-        <section className="grid grid-cols-4 gap-8 p-4">
+        <section className="grid sm:grid-cols-4 grid-cols-1 gap-4 sm:gap-8 pt-8">
           {data && data.length > 0 ? (
             data.map((task) => (
-              <div
-                className="coursesChildContainer grid grid-rows-[30px_35px_45px_40px] grid-1"
+              <ChildContainer
+                // className="coursesChildContainer grid grid-rows-[30px_35px_45px_40px] grid-1"
                 id={task.id}
                 key={task.id}
               >
-                <h2>{task.course_name || "N/A"}</h2>
+                <h2 className="">{task.course_name || "N/A"}</h2>
                 <p>
                   Attendance: <span>{task.attend || "N/A"}</span>
                 </p>
@@ -67,7 +63,7 @@ export default function Courses() {
                 >
                   View
                 </button>
-              </div>
+              </ChildContainer>
             ))
           ) : (
             <h1>Add new Tasks</h1>
