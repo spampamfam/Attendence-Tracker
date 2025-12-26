@@ -23,6 +23,7 @@ import ConfirmModal from "../components/UI/Modal/ConfirmModal";
 import EditCourseModal from "../components/UI/Modal/EditCourseModal";
 import ViewSessionModal from "../components/UI/Modal/ViewSessionModal";
 import EditUserModal from "../components/UI/Modal/EditUserModal";
+import LoadingScreen from "../components/UI/LoadingScreen";
 
 const router = createBrowserRouter([
   //unprotected routes
@@ -34,7 +35,7 @@ const router = createBrowserRouter([
         element: <Layout />,
         children: [
           // { index: true, element: <Landing /> },
-          { index: true, element: <Login /> },
+
           { path: "login", element: <Login /> },
           { path: "signup", element: <Signup /> },
         ],
@@ -50,7 +51,7 @@ const router = createBrowserRouter([
         path: "/app",
         element: <AppLayout />,
         children: [
-          { index: true, element: <Courses /> },
+          { index: true, element: <Dashboard /> },
           { path: "dashboard", element: <Dashboard /> },
           { path: "courses", element: <Courses /> },
           { path: "calendar", element: <Calendar /> },
@@ -74,6 +75,7 @@ const router = createBrowserRouter([
           { path: "edit", element: <EditCourseModal /> },
           { path: "viewsession", element: <ViewSessionModal /> },
           { path: "edituser", element: <EditUserModal /> },
+          { path: "loading", element: <LoadingScreen fullscreen /> },
         ],
       },
       {

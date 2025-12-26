@@ -6,14 +6,20 @@ import DashboardChartComponent from "../components/DashboardChartComponent";
 import MainContainer from "../../../components/UI/container/MainContainer";
 import ChildContainer from "../../../components/UI/container/ChildContainer";
 import BiggerChildContainer from "../../../components/UI/container/BiggerChildContainer";
+import LoadingScreen from "../../../components/UI/LoadingScreen";
 
 export default function Dashboard() {
   const user = useSelector((state) => state.auth.user);
   const data = useSelector((state) => state.tasks.data);
   const stats = useSelector((state) => state.tasks.stats);
+  const globalLoading = useSelector((state) => state.loading?.loading);
+
+  const isLoading =
+    globalLoading || data === null || stats === null || user === null;
 
   // Combine courses + stats for easier access
   const dashboardCourses = useMemo(() => {
+    if (!data || !stats) return [];
     return data.map((course) => {
       const courseStat = stats.find((s) => s.course_id === course.id) || {};
       const attendancePercentage =
@@ -45,6 +51,15 @@ export default function Dashboard() {
   }, [dashboardCourses]);
 
   const pieData = useMemo(() => {
+    if (!data || !stats) {
+      return [
+        { name: "Attended", value: 0, fill: "#4CAF50" },
+        { name: "Absent", value: 0, fill: "#F44336" },
+        { name: "Excused", value: 0, fill: "#FF9800" },
+        { name: "Prof Absent", value: 0, fill: "#2196F3" },
+      ];
+    }
+
     const dashboardCourses = data.map((course) => {
       const courseStat = stats.find((s) => s.course_id === course.id) || {};
       return { ...course, ...courseStat };
@@ -71,7 +86,9 @@ export default function Dashboard() {
     ];
   }, [data, stats]);
 
-  return (
+  return isLoading ? (
+    <LoadingScreen fullscreen message={"Loading "} />
+  ) : (
     <MainContainer>
       <h1 className="outfit text-2xl font-bold text-shadow-2xs">
         Welcome, {user?.name || "Student"}
@@ -106,7 +123,7 @@ export default function Dashboard() {
           <ChildContainer extraClass={" row-start-2 sm:col-start-1"}>
             <h1 className="text-xl font-semibold">Overreview</h1>
             <section className="text-left mt-2 flex flex-col gap-2">
-              <h2>Total Courses: {data.length}</h2>
+              <h2>Total Courses: {data?.length || 0}</h2>
               <h2>
                 Average Attendance:{" "}
                 {dashboardCourses.length > 0
@@ -122,7 +139,10 @@ export default function Dashboard() {
 
               <h2>
                 Attended:{" "}
-                {stats.reduce((sum, s) => sum + (s.attended_count || 0), 0)}
+                {(stats || []).reduce(
+                  (sum, s) => sum + (s.attended_count || 0),
+                  0
+                )}
               </h2>
             </section>
           </ChildContainer>

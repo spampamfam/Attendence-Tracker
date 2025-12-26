@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import MainContainer from "../../../components/UI/container/MainContainer";
 import SquareContainer from "../../../components/UI/container/SquareContainer";
 import ChildContainer from "../../../components/UI/container/ChildContainer";
+import CourseSkeleton from "../../../components/UI/skeleton/CourseSkeleton";
 
 import AddCourseModal from "../../../components/UI/Modal/AddCourseModal";
 import CourseModal from "../../../components/UI/Modal/CourseModal";
@@ -16,6 +17,7 @@ import MainButton from "../../../components/UI/buttons/app/MainButton";
 
 export default function Courses() {
   const data = useSelector((state) => state.tasks.data);
+  const globalLoading = useSelector((state) => state.loading?.loading);
 
   const isAddCourseModalOpen = useSelector(
     (state) => state.addCourseModal.open
@@ -43,7 +45,14 @@ export default function Courses() {
           </MainButton>
         </header>
         <section className="grid sm:grid-cols-4 grid-cols-1 gap-4 sm:gap-8 pt-8">
-          {data && data.length > 0 ? (
+          {data === null || globalLoading ? (
+            // initial load: show skeletons
+            Array.from({ length: 6 }).map((_, i) => (
+              <div key={i}>
+                <CourseSkeleton />
+              </div>
+            ))
+          ) : data && data.length > 0 ? (
             data.map((task) => (
               <ChildContainer
                 // className="coursesChildContainer grid grid-rows-[30px_35px_45px_40px] grid-1"
