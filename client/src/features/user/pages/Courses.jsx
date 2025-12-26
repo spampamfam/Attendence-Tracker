@@ -55,14 +55,14 @@ export default function Courses() {
                   Attendance: <span>{task.attend || "N/A"}</span>
                 </p>
                 <p className="text-secondry-text">{task.professor_name}</p>
-                <button
+                <MainButton
                   className="normalButton"
                   onClick={() => {
                     viewCourseModalService.setOpen(task.id);
                   }}
                 >
                   View
-                </button>
+                </MainButton>
               </ChildContainer>
             ))
           ) : (

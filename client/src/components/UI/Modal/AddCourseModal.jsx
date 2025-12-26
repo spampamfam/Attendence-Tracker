@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import ModalContainer from "../container/ModalContainer";
 import ModalOverlay from "../overlay/ModalOverlay";
+import MainButton from "../buttons/app/MainButton";
 
 import { addCourseModalService } from "../../../services/dispatch/addCourseModalService";
 import { newTask } from "../../../services/Handler/Tasks";
@@ -109,14 +110,14 @@ export default function AddCourseModal() {
           </form>
 
           <footer className="mt-8 flex justify-center">
-            <button
+            <MainButton
               className="normalButton"
               onClick={(e) => {
                 handleSubmission(e);
               }}
             >
               Save
-            </button>
+            </MainButton>
           </footer>
         </ModalContainer>
       </ModalOverlay>
